@@ -1,0 +1,133 @@
+/*.container {
+    display: flex;
+}*/
+
+.logo_alternativa img {
+    width: 700px; 
+    height: auto;
+    display: flex; 
+    margin: 0 auto; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /*background-color: gray;*/
+    width: 16em;
+    height: 14em;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/*.perfil_usuario {
+    display: flex;
+    align-items: center;
+    gap: .2em;
+    margin-left: 2em;
+    margin-top: 2em;
+}*/
+
+.perfil_usuario {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.perfil_ranking {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+    margin-left: 2em;
+    margin-top: 1.5em;
+}
+
+/*.perfil_ranking {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}*/
+
+
+.perfil_historico {
+    display: flex;
+    align-items: center;
+    gap: .2em;
+    margin-left: 2em;
+    margin-top: .7em;
+}
+
+
+.perfil_texto {
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    margin-right: 8em;
+}
+
+input[type='range'] { 
+    accent-color: #E8B931; 
+    /*-webkit-appearance: none;*/ /* Remove o estilo padrão no Chrome/Safari */
+    /*background: transparent;  Torna o fundo transparente para não mostrar qualquer estilo padrão */
+    border: none; /* Remove a borda padrão */
+    outline: none;
+}
+
+input[type='range']:focus {  
+    outline: none;
+    border: none;
+}
+
+
+.container_iniciar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0; 
+}
+
+.iniciar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+    width: 43em;
+    height: 27.25em;
+}
+
+.area_iniciar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    width: 28em;
+    height: 18.5em;
+    padding-top: 3em;
+    background-color: #C6C6C6;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-radius: 20px;
+}
+
+.item_iniciar {
+    display: inline-block;
+    /*align-items: center;
+    gap: 2em;
+    width: 1em;
+    margin-top: 3em;
+    margin-left: 3em;*/
+}
+
+.simbolo_menos {
+    margin-right: .2em;
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+}

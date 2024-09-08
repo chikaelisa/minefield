@@ -1,0 +1,12 @@
+.logo-historico3 img {
+  width: 1000px !important; /* Força a largura para ser 1000px */
+  height: auto !important; /* Mantém a proporção da imagem */
+  max-width: 100% !important; /* Garante que não haverá limite de largura */
+  max-height: none !important; /* Remove limites de altura */
+}
+
+.login-voltar {
+  width: 10em; /* Diminui a largura do botão */
+  height: 3em; /* Diminui a altura do botão */
+  font-size: 20px; /* Diminui o tamanho do texto do botão */
+}
