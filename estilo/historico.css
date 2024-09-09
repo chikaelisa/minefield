@@ -1,12 +1,125 @@
-.logo-historico3 img {
-  width: 1000px !important; /* Força a largura para ser 1000px */
-  height: auto !important; /* Mantém a proporção da imagem */
-  max-width: 100% !important; /* Garante que não haverá limite de largura */
-  max-height: none !important; /* Remove limites de altura */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../imagens/background-logo.png');
+  background-repeat: repeat;
+  padding: 2em;
+  gap: 1em;
+  font-family: "Bungee", sans-serif;
 }
 
-.login-voltar {
-  width: 10em; /* Diminui a largura do botão */
-  height: 3em; /* Diminui a altura do botão */
-  font-size: 20px; /* Diminui o tamanho do texto do botão */
+section {
+  display: flex;
+  gap: 2em;
+  background-color: #D9D9D9;
+  padding: 2em;
+  border-radius: .5em;
+}
+
+p {
+  font-family: "Bungee", sans-serif;
+}
+
+div.selection-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: .3em;
+}
+
+div.select-game-mode {
+  display: flex;
+  flex-direction: column;
+}
+
+div.icon-text-title-victory {
+  display: flex;
+  gap: .5em;
+  color: #1A4CFF;
+  align-items: center;
+}
+
+div.history-game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+div.icon-text-title-defeat {
+  display: flex;
+  gap: .5em;
+  color: red;
+  align-items: center;
+}
+
+div.icon-text-game-item {
+  display: flex;
+  gap: .5em;
+  color: black;
+  align-items: center;
+}
+
+.seta {
+  width: 1.5em;
+}
+
+div.history-game-item {
+  display: flex;
+  background-color: #B3B2B2;
+  padding-top: .3em;
+  padding-bottom: .3em;
+  padding-left: 1em;
+  padding-right: 1em;
+  gap: 3em;
+}
+
+.game-icon {
+  width: 30px;
+  height: 30px;
+}
+
+span {
+  font-size: smaller;
+}
+
+.logo img {
+  max-width: 300px;
+  height: auto;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url('../imagens/checkbox-clean.png');
+  background-size: cover;
+  cursor: pointer;
+}
+
+
+input[type="checkbox"]:checked+label {
+  background-image: url('../imagens/checkbox-marked.png');
+}
+
+button {
+  background-color: #FF2C23;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  border-radius: 20px;
+  border: 0;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  margin-top: 1em;
+  font-family: "Bungee", sans-serif;
+  font-size: medium;
+}
+
+button:hover {
+  cursor: pointer;
 }

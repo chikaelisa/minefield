@@ -2,25 +2,118 @@
 
 <html lang="PT-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Histórico</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Road+Rage&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="estilo/historico.css">
+    <script src="https://kit.fontawesome.com/5da4b5c12f.js" crossorigin="anonymous"></script>
+    <!--TODO: refatorar função e colocar no arquivo js-->
+    <script>
+        function goBack() {
+            window.location.href = 'iniciar.html';
+        }
+    </script>
+</head>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap" rel="stylesheet">
+<body>
 
-        <link rel="stylesheet" type="text/css" href="estilo/login.css">
-        <script src="https://kit.fontawesome.com/5da4b5c12f.js" crossorigin="anonymous"></script>
-    </head>
+    <div class="logo">
+        <img src="imagens/historico2.png" alt="Histórico">
+    </div>
+    <section>
 
-    <body>
+        <div class="select-game-mode">
+            <p>
+                Tipo de Partida
+            </p>
+            <div class="selection-checkbox">
+                <input type="checkbox" id="normal" name="game-mode" value="normal">
+                <label for="normal"></label>
+                <span>Normal</span>
+            </div>
+            <div class="selection-checkbox">
+                <input type="checkbox" id="rovotril" name="game-mode" value="rovotril">
+                <label for="rovotril"></label>
+                <span>Rivotril</span>
+            </div>
+        </div>
+        <div class="history-game-list">
+            <!--TODO: REPLICAR VIA SCRIPT-->
+            <div class="history-game-item">
+                <div class="icon-text-title-victory">
+                    <img src="imagens/bandeira.png" alt="ícone bandeira" class="game-icon">
+                    <p class="list-game-status">Vitória</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <img src="imagens/timer-icon.png" alt="ícone timer" class="game-icon">
+                    <p class="list-game-status">xx:xx</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <p class="list-game-status">xx:xx</p>
+                    <img src="imagens/seta-baixo.png" alt="ícone seta" class="seta">
+                </div>
+            </div>
 
-        <div class="logo">
-            <img src="imagens/historico2.png" alt="Histórico">
+            <div class="history-game-item">
+                <div class="icon-text-title-victory">
+                    <img src="imagens/bandeira.png" alt="ícone bandeira" class="game-icon">
+                    <p class="list-game-status">Vitória</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <img src="imagens/timer-icon.png" alt="ícone timer" class="game-icon">
+                    <p class="list-game-status">xx:xx</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <p class="list-game-status">xx:xx</p>
+                    <img src="imagens/seta-baixo.png" alt="ícone seta" class="seta">
+                </div>
+            </div>
+
+            <div class="history-game-item">
+                <div class="icon-text-title-victory">
+                    <img src="imagens/bandeira.png" alt="ícone bandeira" class="game-icon">
+                    <p class="list-game-status">Vitória</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <img src="imagens/timer-icon.png" alt="ícone timer" class="game-icon">
+                    <p class="list-game-status">xx:xx</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <p class="list-game-status">xx:xx</p>
+                    <img src="imagens/seta-baixo.png" alt="ícone seta" class="seta">
+                </div>
+            </div>
+
+            <div class="history-game-item">
+                <div class="icon-text-title-defeat">
+                    <img src="imagens/bandeira.png" alt="ícone bandeira" class="game-icon">
+                    <p class="list-game-status">Derrota</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <img src="imagens/timer-icon.png" alt="ícone timer" class="game-icon">
+                    <p class="list-game-status">xx:xx</p>
+                </div>
+                <div class="icon-text-game-item">
+                    <p class="list-game-status">xx:xx</p>
+                    <img src="imagens/seta-baixo.png" alt="ícone seta" class="seta">
+                </div>
+            </div>
+            <!-- ----------------------------------------------- -->
         </div>
 
-        <div class="logo logo-historico3">
+    </section>
+
+    <button onclick="goBack()">Voltar</button>
+
+
+    <!-- TODO: componente histórico-->
+
+    <!-- <div class="logo logo-historico3">
             <img src="imagens/historico3.png" alt="Histórico Tabela">
         </div>
 
@@ -28,8 +121,8 @@
 
             <button type="submit" class="login"><span class="login_texto">Voltar</span></button>
 
-        </form>
+        </form> -->
 
-    </body>
+</body>
 
 </html>
