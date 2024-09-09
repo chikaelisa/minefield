@@ -9,7 +9,7 @@ body {
   font-family: "Bungee", sans-serif;
 }
 
-section {
+div.section {
   display: flex;
   gap: 2em;
   background-color: #D9D9D9;
