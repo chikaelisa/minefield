@@ -34,18 +34,27 @@ div.section{
     padding-right: 1em;
   }
 
+.form_campo:focus{
+    outline: none;
+}
+
 .recuperar {
     background-color: #FF2C23;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
     border-radius: 20px;
     border: 0;
     box-shadow: 0px 4px 4px 0px #00000040;
     font-family: "Bungee", sans-serif;
     font-size: medium;
-    width: 15em;
+    width: 13em;
+}
+
+.recuperar:hover {
+    cursor: pointer;
+    background-color: #b92b26;
 }
 
 .cancelar{
@@ -61,6 +70,11 @@ div.section{
     font-size: medium;
     width: 10em;
 }
+.cancelar:hover {
+    cursor: pointer;
+    background-color: #c5c1c1;
+}
+
 p{
     font-family: cursive;
 }
@@ -71,4 +85,10 @@ p{
     font-size: 30px;
     margin-top: .5em; 
     margin-bottom: .5em;
-  }
+}
+.recuperar_texto{
+    font-family: "Road Rage", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}

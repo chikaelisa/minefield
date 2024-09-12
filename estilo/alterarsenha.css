@@ -51,6 +51,10 @@ div.section{
     padding-right: 1em;
 }
 
+.form_campo:focus{
+    outline: none;
+}
+
 .alterar {
     background-color: #FF2C23;
     width: 12em;
