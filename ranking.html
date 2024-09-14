@@ -10,25 +10,28 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="estilo/login.css">
+        <link rel="stylesheet" type="text/css" href="estilo/ranking.css">
         <script src="https://kit.fontawesome.com/5da4b5c12f.js" crossorigin="anonymous"></script>
+        <script>
+            function goBack() {
+                window.location.href = 'iniciar.html';
+            }
+        </script>
     </head>
 
     <body>
 
-        <div class="logo">
-            <img src="imagens/ranking2.png" alt="Ranking">
+        <div class="title">
+            <p class="title-text">Ranking</p>
         </div>
 
-        <div class="logo logo-historico3">
-            <img src="imagens/ranking3.png" alt="Ranking Tabela">
+        <div class="ranking-tabela">
+            <img class="tabela" src="imagens/ranking3.png" alt="Ranking Tabela">
         </div>
 
-        <form action="iniciar.html">
 
-            <button type="submit" class="login"><span class="login_texto">Voltar</span></button>
+        <button type="button" class="iniciar" onclick="goBack()"><span class="iniciar-text">Voltar</span></button>
 
-        </form>
 
     </body>
 
