@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="PT-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar jogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="estilo/partida.css">
+  <script src="https://kit.fontawesome.com/5da4b5c12f.js" crossorigin="anonymous"></script>
+  <script>
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="perfil-usuario">
+      <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
+      <span class="perfil_texto">Olá, {username}</span>
+    </div>
+    <p onclick="goBack()" class="exit">Sair</p>
+  </header>
+
+  <div class="title-image">
+    <img class="campo-minado-image" src="imagens/iniciar-titulo.png" alt="Campo Minado">
+  </div>
+
+  <div class="content">
+    <div class="options-ranking-history">
+      <a href="ranking.html">
+        <div class="iniciar-options">
+          <img src="imagens/trofeu.png" alt="Imagem ranking">
+          <p class="icon-text">Ranking</p>
+        </div>
+      </a>
+
+      <a href="historico.html">
+        <div class="iniciar-options">
+          <img src="imagens/historico.png" alt="Imagem trofeu">
+          <p class="icon-text">Histórico</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="settings">
+
+      <div class="game-settings-container">
+
+          <div class="board-title">
+            <p>Modo: clássico</p>
+            <p>Número de bombas: 5</p>
+            <p>Dimensão: 5</p>
+            <p>Tempo: XX:XX</p>
+          </div>
+
+          <img class="board-img" src="imagens/campominado.png" alt="Imagem campo">
+
+      </div>
+
+      <div class="partida-footer">
+        <div class="spy">
+          <i class="fa-solid fa-eye-slash"></i>
+          <p>Trapaça</p>
+        </div>
+        <p class="exit">Abandonar partida</p>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+body {
+  padding: 1em;
+  font-family: "Bungee", sans-serif;
+}
+
+header {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: flex-end;
+  height: 2em;
+}
+
+div.perfil-usuario {
+  display: flex;
+  align-items: center;
+  gap: .2em;
+}
+
+.logo-user {
+  height: 2em;
+  width: auto;
+}
+
+p.exit {
+  color: red;
+  cursor: pointer;
+}
+
+div.title-image {
+  display: flex;
+  padding-left: 10.5em;
+  margin-bottom: 2em;
+  justify-content: center;
+}
+
+.campo-minado-image {
+  width: 35%;
+  height: auto;
+}
+div.content {
+  display: flex;
+  flex-grow: 1;
+  padding-left: 1em;
+  padding-right: 1em;
+  gap: 5em;   
+  align-items: center;
+  justify-content: center;
+}
+
+div.settings {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: center;
+}
+
+div.options-ranking-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+button.game-mode {
+  border-radius: 1em;
+  border-style: none;
+  padding: .3em;
+}
+
+button.game-mode-yellow {
+  border-radius: 1em;
+  border-style: none;
+  background-color: #DAA520;
+}
+
+span {
+  font-family: "Bungee", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+div.iniciar-options {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center; 
+}
+
+div.iniciar-options img {
+  width: 3em;
+  height: 3em;
+  align-self: center;
+}
+
+div.game-settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  background-color: #D9D9D9;
+  padding-top: 1em;
+  padding-bottom: 4em;
+  border-radius: 1em;
+}
+
+div.bora-comecar {
+  display:flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+button.start-game-button {
+  background-color: #FF2C23;
+  padding: 1em;
+  border-radius: 20px;
+  border: 0;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.perfil_ranking {
+  display: flex;
+  align-items: center;
+  gap: .3em;
+  margin-left: 2em;
+  margin-top: 1.5em;
+}
+.perfil_historico {
+  display: flex;
+  align-items: center;
+  gap: .2em;
+  margin-left: 2em;
+  margin-top: .7em;
+}
+
+.area_iniciar {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  padding-left: 3em;
+  padding-right: 3em;
+  background-color: #C6C6C6;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-radius: 20px;
+}
+
+.simbolo_menos {
+  margin-right: .2em;
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+}
+
+div.board-title {
+  display: flex;
+  gap: 5em;
+  flex-wrap: wrap;
+}
+
+div.partida-footer {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.spy {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  cursor: pointer;
+}
