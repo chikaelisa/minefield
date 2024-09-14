@@ -11,6 +11,10 @@ header {
     height: 2em;
 }
 
+button {
+    cursor: pointer;
+}
+
 div.perfil-usuario {
     display: flex;
     align-items: center;
@@ -24,6 +28,7 @@ div.perfil-usuario {
 
 p.exit {
     color: red;
+    cursor: pointer;
 }
 
 div.title-image {
@@ -77,10 +82,18 @@ button.game-mode {
     padding: .3em;
 }
 
+button.game-mode:hover {
+    background-color: #b88b1c;
+}
+
 button.game-mode-yellow {
     border-radius: 1em;
     border-style: none;
     background-color: #DAA520;
+}
+
+button.game-mode-yellow:hover {
+    background-color: #b88b1c;
 }
 
 span {
@@ -128,6 +141,10 @@ button.start-game-button {
     border-radius: 20px;
     border: 0;
     box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+button.start-game-button:hover {
+    background-color: #b92b26;
 }
 
 .perfil_ranking {
