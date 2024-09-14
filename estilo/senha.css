@@ -22,9 +22,22 @@ div.section{
     width: 20em; 
     margin-bottom: 1em;
 }
+
+.text-biginfo{
+    font-family: "Cabin", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.text-info{
+    font-family: "Cabin", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: left !important;
+}
 .form_campo {
     border: 0;
-    width: 25em;
+    width: 22em;
     height: 3.5625em;
     border-radius: 20px;
     background: #e8baba;
@@ -40,10 +53,7 @@ div.section{
 
 .recuperar {
     background-color: #FF2C23;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    padding-left: 1em;
-    padding-right: 1em;
+    height: 3em;
     border-radius: 20px;
     border: 0;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -58,32 +68,20 @@ div.section{
 }
 
 .cancelar{
-    background-color: #e6e6e6;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 20px;
-    border: 0;
-    box-shadow: 0px 4px 4px 0px #00000040;
-    font-family: "Bungee", sans-serif;
-    font-size: medium;
-    width: 10em;
-}
-.cancelar:hover {
-    cursor: pointer;
-    background-color: #c5c1c1;
+    font-family: "Road Rage", sans-serif;
+    font-size: 25px;
 }
 
-p{
-    font-family: cursive;
+.cancelar:hover{
+    cursor: pointer;
 }
+
 .titulo {
     font-family: "Bungee", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 30px;
-    margin-top: .5em; 
+    margin-top: 1em; 
     margin-bottom: .5em;
 }
 .recuperar_texto{
