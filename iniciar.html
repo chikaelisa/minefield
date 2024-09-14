@@ -2,60 +2,90 @@
 
 <html lang="PT-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Iniciar jogo</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="estilo/iniciar.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar jogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="estilo/iniciar.css">
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
 
-    <body>
+<body>
+    <header class="nav">
+        <div class="perfil-usuario">
+            <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
+            <span class="perfil_texto">Olá, {username}</span>
+        </div>
+        <p onclick="goBack()" class="exit">Sair</p>
 
-        <div class="container">
+    </header>
 
-           <div class="perfil_usuario">
-                <img src="imagens/perfil.png" alt="Imagem perfil">
-                <span class="perfil_texto">Olá, username</span>
-           </div>
-        
-           <div class="perfil_ranking">
-                <img src="imagens/trofeu.png" alt="Imagem ranking">
-                <span class="perfil_texto">Ranking</span>
-           </div>
+    <div class="title-image">
+        <img class="campo-minado-image" src="imagens/iniciar-titulo.png" alt="Campo Minado">
+    </div>
 
-        <div class="perfil_historico">
-             <img src="imagens/historico.png" alt="Imagem trofeu">
-             <span class="perfil_texto">Histórico</span>
+    <div class="content">
+        <div class="options-ranking-history">
+            <a href="ranking.html">
+                <div class="iniciar-options">
+                    <img src="imagens/trofeu.png" alt="Imagem ranking">
+                    <p class="icon-text">Ranking</p>
+                </div>
+            </a>
+
+            <a href="historico.html">
+                <div class="iniciar-options">
+                    <img src="imagens/historico.png" alt="Imagem trofeu">
+                    <p class="icon-text">Histórico</p>
+                </div>
+            </a>
         </div>
 
-        </div>
+        <div class="settings">
 
-       <div class="container_iniciar">
-            <div class="logo_alternativa">
-                <img src="imagens/logoalternativa.png" alt="Logo alternativa">
-            </div>
-
-            <div class="iniciar">
+            <div class="game-settings-container">
 
                 <div class="area_iniciar">
-                    
-                    <div class="item_iniciar">
+
+                    <div class="item-iniciar">
                         <span class="perfil_texto">Dimensão</span>
-                        <span class="simbolo_menos">-</span><input type="range" min="10" max="100" value="10"><span class="simbolo_mais">+</span>
+                        <span class="simbolo_menos">-</span><input type="range" min="10" max="100" value="10"><span
+                            class="simbolo_mais">+</span>
                     </div>
 
-                    <div class="item_iniciar">
+                    <div class="item-iniciar">
                         <span class="perfil_texto">N° Bombas</span>
-                        <span class="simbolo_menos">-</span><input type="range" min="10" max="100" value="10"><span class="simbolo_mais">+</span>
+                        <span class="simbolo_menos">-</span><input type="range" min="10" max="100" value="10"><span
+                            class="simbolo_mais">+</span>
                     </div>
 
+                    <div class="item-iniciar">
+                        <span class="perfil_texto">Modalidade</span>
+                        <div class="selection-mode">
+                            <!-- TODO: arrumar classe yellow. Está diferente apenas para demonstração-->
+                            <button class="game-mode-yellow" type="button"><span class="game-mode-text">Normal</span></button>
+                            <button class="game-mode" type="button"><span class="game-mode-text">Rivotril</span></button>
+                            <button class="game-mode" type="button"><span class="game-mode-text">Rankeada</span></button>
+                        </div>
+                    </div>
+                    <div class="bora-comecar">
+                        <button class="start-game-button" type="button"><span class="start-game-text">Iniciar Jogo</span></button>
+                    </div>
+                    
                 </div>
 
             </div>
-       </div>
+        </div>
+    </div> 
 
-    </body>
+</body>
 
 </html>
