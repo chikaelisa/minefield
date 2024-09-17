@@ -49,14 +49,10 @@ div.content {
     padding-right: 1em;
     gap: 5em;   
     align-items: center;
+    justify-content: center;
 
 }
-div.settings {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-}
+
 div.options-ranking-history {
     display: flex;
     flex-direction: column;
