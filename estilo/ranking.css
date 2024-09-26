@@ -43,3 +43,50 @@ button:hover {
     cursor: pointer;
     background-color: #b92b26;
 }
+
+div.ranking-item {
+    display: flex;
+    width: 500px;
+    background-color: #B3B2B2;
+    justify-content: space-between;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    padding-left: 1em;
+    padding-right: 3em;
+  }
+
+  div.icon-trofeu {
+    display: flex;
+    gap: .5em;
+    color: black;
+    align-items: center;
+  }
+  
+  div.icon-time-game-item {
+    display: flex;
+    gap: .5em;
+    color: black;
+    align-items: center;
+  }
+
+  p {
+    font-family: "Bungee", sans-serif;
+  }
+  div.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #d9d9d9;
+    padding: 1em;
+  }
+
+  div.ranking-item-current-user {
+    display: flex;
+    width: 500px;
+    background-color: #FF9C9c;
+    justify-content: space-between;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    padding-left: 1em;
+    padding-right: 3em;
+  }
