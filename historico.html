@@ -32,18 +32,23 @@
                 Tipo de Partida
             </p>
             <div class="selection-checkbox">
-                <input type="checkbox" id="normal" name="game-mode" value="normal">
+                <input type="checkbox" id="normal" name="normal" value="normal" checked>
                 <label for="normal"></label>
                 <span>Normal</span>
             </div>
             <div class="selection-checkbox">
-                <input type="checkbox" id="rovotril" name="game-mode" value="rovotril">
-                <label for="rovotril"></label>
+                <input type="checkbox" id="rivotril" name="rivotril" value="rivotril" checked>
+                <label for="rivotril"></label>
                 <span>Rivotril</span>
             </div>
+            <div class="selection-checkbox">
+                <input type="checkbox" id="ranked" name="ranked" value="ranked" checked>
+                <label for="ranked"></label>
+                <span>Ranqueada</span>
+            </div>
         </div>
-        <div class="history-game-list">
-            <!--TODO: REPLICAR VIA SCRIPT-->
+        <div id="history-game-list" class="history-game-list">
+            <!--
             <div class="history-game-item">
                 <div class="icon-text-title-victory">
                     <img src="imagens/bandeira.png" alt="ícone bandeira" class="game-icon">
@@ -103,12 +108,14 @@
                     <img src="imagens/seta-baixo.png" alt="ícone seta" class="seta">
                 </div>
             </div>
-            <!-- fim da lista -->
+            -->
         </div>
 
     </div>
 
     <button onclick="goBack()">Voltar</button>
+
+    <script src="src/historico.js"></script>
 
 </body>
 
