@@ -50,8 +50,37 @@ function initialState() {
   });
 };
 
-function filterHistory(gameMode) {
-  const filteredHistory = mockHistory.filter((match) => match.gameMode === gameMode);
+function getStatusFilter() {
+
+  const gameModes = [];
+
+  var checkboxNormal = document.getElementById("normal");
+  var checkboxRivotril = document.getElementById("rivotril");
+  var checkboxRanked = document.getElementById("ranked");
+
+  if (checkboxNormal.checked)
+    gameModes.push(gameMode.NORMAL);
+
+  if (checkboxRivotril.checked)
+    gameModes.push(gameMode.RIVOTRIL);
+
+  if (checkboxRanked.checked)
+    gameModes.push(gameMode.RANKING);
+
+  return gameModes;
+}
+
+function filterHistory(/*gameMode*/) {
+  const gameModes = getStatusFilter();
+
+  if (gameModes.length === 0) {
+    removeAll("history-game-list");
+    return;
+  }
+
+  removeAll("history-game-list");
+
+  const filteredHistory = mockHistory.filter((match) => gameModes.includes(match.gameMode));
   filteredHistory.forEach((match) => {
     createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate);
   });
@@ -171,31 +200,34 @@ var checkboxRanked = document.getElementById("ranked");
 
 checkboxNormal.addEventListener("change", function() {  
   if (checkboxNormal.checked) {
-    removeAll("history-game-list");
-    filterHistory(gameMode.NORMAL);
+    //removeAll("history-game-list");
+    filterHistory(/*gameMode.NORMAL*/);
   } else {
-    removeAll("history-game-list");
-    initialState();
+    filterHistory();
+    //removeAll("history-game-list");
+    //initialState();
   }
 });
 
 checkboxRivotril.addEventListener("change", function() {  
   if (checkboxRivotril.checked) {
-    removeAll("history-game-list");
-    filterHistory(gameMode.RIVOTRIL);
+    //removeAll("history-game-list");
+    filterHistory(/*gameMode.RIVOTRIL*/);
   } else {
-    removeAll("history-game-list");
-    initialState();
+    filterHistory();
+    //removeAll("history-game-list");
+    //initialState();
   }
 });
 
 checkboxRanked.addEventListener("change", function() {  
   if (checkboxRanked.checked) {
-    removeAll("history-game-list");
-    filterHistory(gameMode.RANKING);
+    //removeAll("history-game-list");
+    filterHistory(/*gameMode.RANKING*/);
   } else {
-    removeAll("history-game-list");
-    initialState();
+    filterHistory();
+    //removeAll("history-game-list");
+    //initialState();
   }
 });
 
