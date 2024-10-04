@@ -19,44 +19,44 @@
       <p>Meus Dados</p>
 
       <div>
-        <i class="fa-solid fa-user" id="campo_login1"> <span class="campo_texto"> Nome completo</span></i>
-        <div class="form_campo" type="text"></div> <br>
+        <i class="fa-solid fa-user" > <span class="campo_texto"> Nome completo</span></i>
+        <div class="form_campo" id="campo_login1" type="text"></div> <br>
       </div>
 
       <div>
-        <i class="fa-regular fa-calendar-days" id="campo_login2"> <span class="campo_texto"> Data de nascimento</span></i>
-        <input class="form_campo" type="date"> <br>
+        <i class="fa-regular fa-calendar-days"> <span class="campo_texto"> Data de nascimento</span></i>
+        <div class="form_campo" id="data_nascimento" type="text"></div> <br>
       </div>
 
       <div>
-        <i class="fa-solid fa-file-signature" id="campo_login3"> <span class="campo_texto"> CPF</span></i>
-        <div class="form_campo" type="text"></div> <br>
+        <i class="fa-solid fa-file-signature" > <span class="campo_texto"> CPF</span></i>
+        <div class="form_campo" id="cpf" type="text"></div> <br>
       </div>
 
       <div class="campo_lapis">
-        <i class="fa-solid fa-phone" id="campo_login4"> <span class="campo_texto"> Telefone</span></i>
-        <input class="form_campo" type="tel">
+        <i class="fa-solid fa-phone"> <span class="campo_texto"> Telefone</span></i>
+        <input class="form_campo" id="telefone" type="tel" disabled>
         <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>
 
       <div class="campo_lapis">
-        <i class="fa-solid fa-envelope" id="campo_login5"><span class="campo_texto"> E-mail</span></i>
-        <input class="form_campo" type="email">
+        <i class="fa-solid fa-envelope" ><span class="campo_texto"> E-mail</span></i>
+        <input class="form_campo" id="email" type="email" disabled>
         <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>
 
       <div class="campo_lapis">
-        <i class="fa-solid fa-circle-user" id="campo_login6"><span class="campo_texto"> Username</span></i>
-        <input class="form_campo" type="text">
+        <i class="fa-solid fa-circle-user" ><span class="campo_texto"> Username</span></i>
+        <input class="form_campo" id="username" type="text" disabled>
         <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>
 
       <div class="campo_lapis">
-        <i class="fa-solid fa-lock" id="campo_login7"> <span class="campo_texto"> Senha</span></i>
-        <input class="form_campo" type="password">
+        <i class="fa-solid fa-lock" > <span class="campo_texto"> Senha</span></i>
+        <input class="form_campo" id="senha" type="password" disabled>
         <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>
@@ -65,6 +65,8 @@
       <button class="alterar" type="submit"><span class="alterar_texto">Alterar</span></button>
 
     </form>
+
+    <script src="src/alteraDados.js"></script>
 
   </body>
 
