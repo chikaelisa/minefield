@@ -1,11 +1,11 @@
 document.querySelector(".form_cadastro").addEventListener("submit", function(event){
-    var nome = document.getElementById("nome").value;
-    var dataNascimento = document.getElementById("dataNasc").value;
-    var cpf = document.getElementById("cpf").value;
-    var telefone = document.getElementById("telefone").value;
-    var email = document.getElementById("email").value;
-    var user = document.getElementById("user").value;
-    var senha = document.getElementById("senha").value;
+    let nome = document.getElementById("nome").value;
+    let dataNascimento = document.getElementById("dataNasc").value;
+    let cpf = document.getElementById("cpf").value;
+    let telefone = document.getElementById("telefone").value;
+    let email = document.getElementById("email").value;
+    let user = document.getElementById("user").value;
+    let senha = document.getElementById("senha").value;
 
     if(nome.length < 1){
         alert("Nome precisa ter pelo menos 1 caracter!")
@@ -19,13 +19,13 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
         return;
     }
 
-    var partesData = dataNascimento.split('-');
-    var ano = parseInt(partesData[0], 10);
-    var mes = parseInt(partesData[1], 10) - 1; //mês é 0-indexado
-    var dia = parseInt(partesData[2], 10);
+    let partesData = dataNascimento.split('-');
+    let ano = parseInt(partesData[0], 10);
+    let mes = parseInt(partesData[1], 10) - 1; //mês é 0-indexado
+    let dia = parseInt(partesData[2], 10);
 
-    var dataNasc = new Date(ano, mes, dia);
-    var dataAtual = new Date();
+    let dataNasc = new Date(ano, mes, dia);
+    let dataAtual = new Date();
     dataAtual.setHours(0, 0, 0, 0); 
 
     if (dataNasc > dataAtual) {
@@ -40,7 +40,7 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
         return;
     }
 
-    var telefoneValido = /^\d{10,11}$/.test(telefone);
+    let telefoneValido = /^\d{10,11}$/.test(telefone);
     if (!telefoneValido) {
         alert("Verifique seu telefone e tente novamente, lembrando que o formado é este: XXXXXXXXXX.");
         event.preventDefault();
@@ -64,7 +64,7 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
 });
 
 function verificaDataValida(dia, mes, ano) {
-    var data = new Date(ano, mes, dia);
+    let data = new Date(ano, mes, dia);
     return data.getFullYear() === ano && data.getMonth() === mes && data.getDate() === dia;
 }
 
@@ -76,11 +76,11 @@ function validaCPF(cpf) {
     if (/^(\d)\1+$/.test(cpf)) 
         return false; //com todos os números iguais
         
-    var soma = 0;
-    for (var i = 0; i < 9; i++) {
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
         soma += parseInt(cpf.charAt(i)) * (10 - i);
     }
-    var resto = (soma * 10) % 11;
+    let resto = (soma * 10) % 11;
     if (resto == 10 || resto == 11) resto = 0;
     if (resto != parseInt(cpf.charAt(9))) returnfalse;
         
@@ -96,6 +96,6 @@ function validaCPF(cpf) {
 }
     
 function validaUsername(username) {
-    var usernameValido = /^[a-zA-Z0-9]{2,20}$/.test(username);
+    let usernameValido = /^[a-zA-Z0-9]{2,20}$/.test(username);
     return usernameValido;
 }
