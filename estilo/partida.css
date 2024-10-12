@@ -181,7 +181,7 @@ div.spy {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 50px); /* Ajusta para criar quadrados */
+  grid-template-columns: repeat(auto-fill, 50px);
   gap: 5px;
   justify-content: center;
 }
@@ -194,7 +194,17 @@ div.spy {
   border: 1px solid #000;
   font-size: 18px;
   font-family: Arial, sans-serif;
+  background-color: blue; /* Inicialmente, todas as células são azuis */
+  color: white;
+  cursor: pointer;
 }
-.cell.mine {
+.revealed {
+  width: 50px;
+  height: 50px;
+  background-color: lightgray; /* Quando revelada, a célula fica cinza claro */
+  color: black;
+  cursor: default;
+}
+.mine {
   background-color: red;
 }
