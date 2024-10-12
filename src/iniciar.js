@@ -38,6 +38,7 @@ gameModeButtons.forEach(button => {
 
 window.onload = displayUsername;
 
+
 function updateBombs() {
     const dimensaoInput = document.getElementById('dimensao');
     const dimensaoValue = document.getElementById('dimensaoValue');
