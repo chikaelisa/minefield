@@ -19,6 +19,7 @@ div.perfil-usuario {
     display: flex;
     align-items: center;
     gap: .2em;
+    cursor: pointer;
 }
 
 .logo-user {
@@ -42,6 +43,7 @@ div.title-image {
     width: 35%;
     height: auto;
 }
+
 div.content {
     display: flex;
     flex-grow: 1;
@@ -50,7 +52,6 @@ div.content {
     gap: 5em;   
     align-items: center;
     justify-content: center;
-
 }
 
 div.options-ranking-history {
@@ -76,20 +77,16 @@ button.game-mode {
     border-radius: 1em;
     border-style: none;
     padding: .3em;
+    transition: background-color 0.4s ease;
+    background-color: transparent;
 }
 
 button.game-mode:hover {
     background-color: #b88b1c;
 }
 
-button.game-mode-yellow {
-    border-radius: 1em;
-    border-style: none;
+button.game-mode.active {
     background-color: #DAA520;
-}
-
-button.game-mode-yellow:hover {
-    background-color: #b88b1c;
 }
 
 span {
@@ -157,14 +154,10 @@ button.start-game-button:hover {
     margin-left: 2em;
     margin-top: .7em;
 }
- /*TODO: remover borda do componente quando preenchido*/
+
 input[type='range'] {
     accent-color: #E8B931;
-    /*-webkit-appearance: none;*/
-    /* Remove o estilo padrão no Chrome/Safari */
-    /*background: transparent;  Torna o fundo transparente para não mostrar qualquer estilo padrão */
     border: none;
-    /* Remove a borda padrão */
     outline: none;
 }
 
