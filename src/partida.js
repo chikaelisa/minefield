@@ -53,11 +53,14 @@ const defineCellProps = (cell) => {
     cell.style.backgroundColor = "lightgray";
   }
   if (cell.classList.contains("mine")) {
-    cell.innerText = "M";
+    cell.innerText = "💣";
     cell.style.backgroundColor = "red";
   }
+  if (cell.classList.contains("flagged")) {
+    cell.innerText = "🚩";
+    cell.style.backgroundColor = "white";
+  }
 };
-let isFirstClick = true;
 
 const renderBoard = (size, numMines) => {
   const boardDiv = document.querySelector(".board");
@@ -79,6 +82,21 @@ const renderBoard = (size, numMines) => {
           isFirstClick = false;
         }
         showCell(i, j, board);
+      });
+
+      cell.addEventListener("contextmenu", (e) => {
+        e.preventDefault(); // Evita que o menu de contexto padrão apareça
+
+        if (!cell.classList.contains("revealed") && !isFirstClick) {
+          cell.classList.toggle("flagged");
+
+          if (cell.classList.contains("flagged")) {
+            defineCellProps(cell);
+          } else {
+            cell.innerText = "";
+            cell.style.backgroundColor = "blue";
+          }
+        }
       });
 
       boardDiv.appendChild(cell);
@@ -106,11 +124,11 @@ function showCell(i, j, board) {
   }
 }
 
-function showAllCells(tabuleiro) {
-  const L = tabuleiro.length;
+function showAllCells(board) {
+  const size = board.length;
 
-  for (let i = 0; i < L; i++) {
-    for (let j = 0; j < L; j++) {
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
       const cell = document.querySelector(
         `.cell[data-row='${i}'][data-col='${j}']`
       );
@@ -118,13 +136,16 @@ function showAllCells(tabuleiro) {
       if (cell && !cell.classList.contains("revealed")) {
         cell.classList.add("revealed");
 
-        if (tabuleiro[i][j] === "M") {
+        if (board[i][j] === "M") {
           cell.classList.add("mine");
-        } else if (tabuleiro[i][j] === 0) {
+        } else if (board[i][j] === 0) {
           cell.innerText = "";
         } else {
-          cell.innerText = tabuleiro[i][j];
+          cell.innerText = board[i][j];
         }
+      }
+      if (cell.classList.contains("flagged")) {
+        cell.classList.toggle("flagged");
       }
       defineCellProps(cell);
     }
@@ -159,7 +180,8 @@ function showCloseCells(i, j, board) {
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
 // Testando a função
 const L = 20; // Tamanho do tabuleiro LxL
-const numMinas = 100; // Número de minas no tabuleiro
+const numMinas = 80; // Número de minas no tabuleiro
+let isFirstClick = true;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderBoard(L, numMinas);
