@@ -50,18 +50,18 @@
 
                 <div class="item-iniciar">
                     <span class="perfil_texto">Dimensão</span>
-                    <span class="simbolo_menos">-</span>
+                    <span id="simboloMenosDimensao" class="simbolo_menos">-</span>
                     <input type="range" min="10" max="20" value="10" id="dimensao" oninput="updateBombs()">
-                    <span class="simbolo_mais">+</span>
+                    <span id="simboloMaisDimensao" class="simbolo_mais">+</span>
                     <span id="dimensaoValue">10</span>
                 </div>
 
                 <div class="item-iniciar">
                     <span class="perfil_texto">N° Bombas</span>
-                    <span class="simbolo_menos">-</span>
+                    <span id="simboloMenosBomba" class="simbolo_menos">-</span>
                     <input type="range" min="5" max="200" value="5" id="bombas" oninput="updateBombasValue()">
-                    <span class="simbolo_mais">+</span>
-                    <span id="bombasValue">200</span>
+                    <span id="simboloMaisBomba" class="simbolo_mais">+</span>
+                    <span id="bombasValue">5</span>
                 </div>
 
                 <div class="item-iniciar">
@@ -73,7 +73,7 @@
                         <button class="game-mode" type="button">
                             <span class="game-mode-text">Rivotril</span>
                         </button>
-                        <button class="game-mode" type="button">
+                        <button id="rankedButton" class="game-mode" type="button">
                             <span class="game-mode-text">Rankeada</span>
                         </button>
                     </div>
