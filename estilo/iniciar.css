@@ -180,9 +180,15 @@ input[type='range']:focus {
 }
 
 .simbolo_menos {
-    margin-right: .2em;
     font-family: "Bungee", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.simbolo_mais {
+    cursor: pointer;
+    user-select: none;
 }
