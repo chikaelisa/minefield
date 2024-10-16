@@ -117,11 +117,19 @@ function showCell(i, j, board) {
 
   if (board[i][j] === "M") {
     cell.classList.add("mine");
+    isDefeat = true;
     defineCellProps(cell);
     showAllCells(board);
-  } else if (board[i][j] === 0) {
+    setTimeout(isFinishGame, 300);
+    return;
+  }
+  revealedSafeCells++;
+
+  if (board[i][j] === 0) {
     showCloseCells(i, j, board);
   }
+
+  isFinishGame();
 }
 
 function showAllCells(board) {
@@ -177,11 +185,25 @@ function showCloseCells(i, j, board) {
   }
 }
 
+const isVictory = () => revealedSafeCells === totalSafeCells;
+let isDefeat = false;
+
+const isFinishGame = () => {
+  if (isVictory()) {
+    alert("Você venceu!!!");
+  }
+  if (isDefeat) {
+    alert("Você perdeu :/");
+  }
+};
+
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
 // Testando a função
-const L = 20; // Tamanho do tabuleiro LxL
-const numMinas = 80; // Número de minas no tabuleiro
+const L = 10; // Tamanho do tabuleiro LxL
+const numMinas = 10; // Número de minas no tabuleiro
 let isFirstClick = true;
+const totalSafeCells = L * L - numMinas;
+let revealedSafeCells = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderBoard(L, numMinas);
