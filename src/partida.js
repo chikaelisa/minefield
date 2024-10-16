@@ -79,6 +79,7 @@ const renderBoard = (size, numMines) => {
       cell.addEventListener("click", async () => {
         if (isFirstClick) {
           board = createBoard(size, numMines, i, j);
+          startTimer();
           isFirstClick = false;
         }
         showCell(i, j, board);
@@ -189,12 +190,30 @@ const isVictory = () => revealedSafeCells === totalSafeCells;
 let isDefeat = false;
 
 const isFinishGame = () => {
+  //TODO: precisa enviar pro banco: user, modo de jogo, num de bom, dimentão e tempo em segundos
   if (isVictory()) {
-    alert("Você venceu!!!");
+    alert(`Você venceu!!! O jogo durou ${seconds} segundos`);
+    stopTimer();
   }
   if (isDefeat) {
-    alert("Você perdeu :/");
+    alert(`Você perdeu. O jogo durou ${seconds} segundos`);
+    stopTimer();
   }
+};
+
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    seconds++;
+    const minutes = Math.floor(seconds / 60);
+    const displaySeconds = seconds % 60;
+    document.getElementById("timer").innerText = `Tempo: ${String(
+      minutes
+    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+  }, 1000);
+};
+
+const stopTimer = () => {
+  clearInterval(timerInterval);
 };
 
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
@@ -204,6 +223,8 @@ const numMinas = 10; // Número de minas no tabuleiro
 let isFirstClick = true;
 const totalSafeCells = L * L - numMinas;
 let revealedSafeCells = 0;
+let timerInterval;
+let seconds = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderBoard(L, numMinas);
