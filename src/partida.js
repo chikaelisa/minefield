@@ -1,3 +1,5 @@
+"use-strict";
+
 const isInBoardSize = (x, y, size) => x >= 0 && x < size && y >= 0 && y < size;
 
 const createBoard = (size, numMines, firstX, firstY) => {
@@ -6,6 +8,8 @@ const createBoard = (size, numMines, firstX, firstY) => {
     .map(() => Array(size).fill(0));
 
   let leftMines = numMines;
+
+  console.log("firstX, fisrtY", firstX, firstY);
 
   while (leftMines > 0) {
     let x = Math.floor(Math.random() * size);
@@ -65,7 +69,7 @@ const defineCellProps = (cell) => {
 const renderBoard = (size, numMines) => {
   const boardDiv = document.querySelector(".board");
 
-  boardDiv.style.gridTemplateColumns = `repeat(${L}, 50px)`;
+  boardDiv.style.gridTemplateColumns = `repeat(${dimension}, 50px)`;
   boardDiv.innerHTML = "";
 
   let board;
@@ -78,8 +82,9 @@ const renderBoard = (size, numMines) => {
 
       cell.addEventListener("click", async () => {
         if (isFirstClick) {
+          console.log(i, j);
           board = createBoard(size, numMines, i, j);
-          startTimer();
+          startTime();
           isFirstClick = false;
         }
         showCell(i, j, board);
@@ -195,15 +200,62 @@ const isFinishGame = () => {
     alert(`Você venceu!!! O jogo durou ${seconds} segundos`);
     stopTimer();
   }
-  if (isDefeat) {
+  if (isDefeat || (gameMode.includes("Rivotril") && Number(seconds) === 0)) {
     alert(`Você perdeu. O jogo durou ${seconds} segundos`);
     stopTimer();
   }
 };
 
-const startTimer = () => {
+const startTimerNormalOrRanked = () => {
+  seconds = 0;
   timerInterval = setInterval(() => {
     seconds++;
+    const minutes = Math.floor(seconds / 60);
+    const displaySeconds = seconds % 60;
+    document.getElementById("timer").innerText = `Tempo: ${String(
+      minutes
+    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+  }, 1000);
+};
+
+const setTimeToRivotrilMode = () => {
+  if (numMinas <= 10) {
+    seconds = 10;
+    return;
+  }
+  if (numMinas <= 30) {
+    seconds = 180;
+    return;
+  }
+  if (numMinas <= 50) {
+    seconds = 240;
+    return;
+  }
+  if (numMinas <= 80) {
+    seconds = 280;
+    return;
+  }
+
+  seconds = 300;
+};
+
+const startTime = () => {
+  if (gameMode.includes("Rivotril")) {
+    startTimerRivotril();
+    return;
+  }
+  startTimerNormalOrRanked();
+};
+
+const startTimerRivotril = () => {
+  setTimeToRivotrilMode();
+  timerInterval = setInterval(() => {
+    if (seconds === 0) {
+      stopTimer();
+      isFinishGame();
+      return;
+    }
+    seconds--;
     const minutes = Math.floor(seconds / 60);
     const displaySeconds = seconds % 60;
     document.getElementById("timer").innerText = `Tempo: ${String(
@@ -215,17 +267,39 @@ const startTimer = () => {
 const stopTimer = () => {
   clearInterval(timerInterval);
 };
+const setGameInicialInfos = () => {
+  document.getElementById("game-mode").innerText = `Modo: ${cleanString(
+    gameMode
+  )}`;
+  document.getElementById(
+    "number-mines"
+  ).innerText = `Número de bombas: ${numMinas}`;
+  document.getElementById("dimension").innerText = `Dimensão: ${dimension}`;
+};
+
+const cleanString = (text) => {
+  return text.replace(/\s+/g, " ").trim();
+};
 
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
 // Testando a função
-const L = 10; // Tamanho do tabuleiro LxL
-const numMinas = 10; // Número de minas no tabuleiro
+const dimension = Number(localStorage.getItem("dimension"));
+const numMinas = Number(localStorage.getItem("numberBombs"));
+const gameMode = localStorage.getItem("mode");
+const user = localStorage.getItem("user");
+const totalSafeCells = dimension * dimension - numMinas;
 let isFirstClick = true;
-const totalSafeCells = L * L - numMinas;
 let revealedSafeCells = 0;
 let timerInterval;
-let seconds = 0;
+let seconds;
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderBoard(L, numMinas);
+  renderBoard(dimension, numMinas);
+  setGameInicialInfos();
+
+  console.log({ dimension });
+  console.log({ numMinas });
+  console.log({ gameMode });
+  console.log({ user });
+  console.log(gameMode.includes("Rivotril"));
 });
