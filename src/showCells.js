@@ -2,12 +2,13 @@
 
 import { isInBoardSize } from "./crateBoard.js";
 import { isFinishGame } from "./finishGame.js";
-import { defineCellProps } from "./helpers.js";
-import { gameMode, generalBoardGabe, totalSafeCells } from "./partida.js";
+import { cleanString, defineCellProps } from "./helpers.js";
+import { generalBoardGame, totalSafeCells } from "./partida.js";
+
+const gameMode = cleanString(localStorage.getItem("mode"));
+let revealedSafeCells = 0;
 
 export const isVictory = () => revealedSafeCells === totalSafeCells;
-
-let revealedSafeCells = 0;
 
 export const showCell = (i, j, board) => {
   const cell = document.querySelector(
@@ -65,7 +66,7 @@ export const showCloseCells = (i, j, board) => {
 };
 
 export const showAllCells = () => {
-  const board = generalBoardGabe();
+  const board = generalBoardGame();
   const size = board.length;
 
   for (let i = 0; i < size; i++) {
