@@ -2,23 +2,20 @@
 
 <html lang="PT-br">
 
+<!-- image crediti <a href="https://www.flaticon.com/free-icons/hourglass" title="hourglass icons">Hourglass icons created by Freepik - Flaticon</a>   -->
+
 <head>
   <meta charset="UTF-8">
   <title>Campo Minado</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap"
-      rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="estilo/partida.css">
   <script src="https://kit.fontawesome.com/5da4b5c12f.js" crossorigin="anonymous"></script>
-  <script>
-    function goBack() {
-      window.location.href = 'index.html';
-    }
-  </script>
-   <script type="module" src="/src/partida.js"></script>
-   
+  <script type="module" src="/src/partida.js"></script>
+
 </head>
 
 <body>
@@ -27,7 +24,7 @@
       <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
       <span class="perfil_texto">Olá, {username}</span>
     </div>
-    <p onclick="goBack()" class="exit">Sair</p>
+    <p class="exit">Sair</p>
   </header>
 
   <div class="title-image">
@@ -45,7 +42,7 @@
 
       <a href="historico.html">
         <div class="iniciar-options">
-          <img src="imagens/historico.png" alt="Imagem trofeu">
+          <img src="imagens/historico.png" alt="Imagem historico">
           <p class="icon-text">Histórico</p>
         </div>
       </a>
@@ -55,15 +52,15 @@
 
       <div class="game-settings-container">
 
-          <div class="board-title">
-            <p id="game-mode">Modo: clássico</p>
-            <p id="number-mines">Número de bombas: 5</p>
-            <p id="dimension">Dimensão: 5</p>
-            <p id="timer">Tempo: 00:00</p>
-          </div>
+        <div class="board-title">
+          <p id="game-mode">Modo: clássico</p>
+          <p id="number-mines">Número de bombas: 5</p>
+          <p id="dimension">Dimensão: 5</p>
+          <p id="timer">Tempo: 00:00</p>
+        </div>
 
-          <div class="board"></div>
-          <!-- <img class="board-img" src="imagens/campominado.png" alt="Imagem campo"> -->
+        <div class="board"></div>
+        <!-- <img class="board-img" src="imagens/campominado.png" alt="Imagem campo"> -->
 
       </div>
 
@@ -72,12 +69,31 @@
           <i class="fa-solid fa-eye-slash"></i>
           <p>Trapaça</p>
         </div>
-        <p class="exit">Abandonar partida</p>
+
+        <p class="leave-game">Abandonar partida</p>
+
       </div>
 
     </div>
 
+    <div class="options-ranking-history">
+    
+        <div class="iniciar-options">
+          <img src="imagens/mineFlag.png" alt="Bombas marcadas">
+          <p class="icon-text" id="gameFlags"></p>
+        </div>
 
+        <div class="iniciar-options" id="timer-rivotril-div" style="display: none;">
+          <img src="imagens/ampulheta.png" alt="tempo rivotril">
+          <p class="icon-text" id="timer-rivotril"></p>
+        </div>
+
+        <div class="iniciar-options" id="playAgain" style="display: none;">
+          <img src="imagens/replay.png" alt="Imagem trofeu">
+          <p class="icon-text" >Novo jogo</p>
+        </div>
+ 
+    </div>
 
   </div>
 

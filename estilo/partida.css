@@ -26,6 +26,10 @@ p.exit {
   color: red;
   cursor: pointer;
 }
+p.leave-game {
+  color: red;
+  cursor: pointer;
+}
 
 div.title-image {
   display: flex;
