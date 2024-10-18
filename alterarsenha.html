@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Cabin:ital,wght@0,400..700;1,400..700&family=Road+Rage&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="estilo/alterarsenha.css">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.3/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
 
 <body>
@@ -16,14 +17,23 @@
         <p class="titulo">Alterar Senha</p>
         <div class="section">
             <p class="subtitulo">Nova Senha</p>
-            <input class="form_campo" type="password" placeholder="Digite sua nova senha"><br>
+            <div class="input-container">
+                <input id="password" class="form_campo" type="password" placeholder="Digite sua nova senha">
+                <img class="eye-icon togglePassword" src="imagens/verSenha.png" alt="Ver senha">
+            </div><br>
             <p class="subtitulo">Confirmar Senha</p>
-            <input class="form_campo" type="password" placeholder="Confirme sua nova senha">
+            <div class="input-container">
+                <input id="password" class="form_campo" type="password" placeholder="Repita sua nova senha">
+                <img class="eye-icon togglePassword" src="imagens/verSenha.png" alt="Ver senha" >
+            </div>
+            
         <form action="index.html">
-            <button class="alterar" type="submit"><span class="alterarsenha_texto">Alterar senha</span></button>
-        </div>
-    </form>
+            <button class="alterar" type="submit"><span class="alterarsenha_texto">Alterar senha</span> </button>
+        </form>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.3/dist/sweetalert2.all.min.js"></script>
     <script src="src/validarSenha.js"></script>
+    <script src="src/verSenha.js"></script>
 
 </body>

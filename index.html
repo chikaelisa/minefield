@@ -29,7 +29,10 @@
             <input id="username" class="form_campo" type="text"> <br>
 
             <i id="campo_login2" class="fa-solid fa-lock"> <span class="campo_texto">Senha</span></i>
-            <input id="password" class="form_campo" type="password"> <br>
+            <div class="input-container">
+                <input id="password" class="form_campo" type="password">
+                <img class="eye-icon togglePassword" src="imagens/verSenha.png" alt="Ver senha">
+            </div> <br>
 
             <button type="submit" class="login"><span class="login_texto">Entrar</span></button>
 
@@ -43,6 +46,7 @@
         </div>
 
         <script src="src/login.js"></script>
+        <script src="src/verSenha.js"></script>
 
     </body>
 

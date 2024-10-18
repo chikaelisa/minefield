@@ -5,15 +5,29 @@ document.querySelector('.alterar').addEventListener('click', function(event) {
     const confirmarSenha = document.querySelectorAll('.form_campo')[1].value;
 
     if (novaSenha.length < 8) {
-        alert("A senha deve ter pelo menos 8 caracteres.");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Erro',
+            text: 'A senha deve ter pelo menos 8 caracteres.',
+        });
         return;
     }
 
     if (novaSenha !== confirmarSenha) {
-        alert("As senhas não coincidem.");
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'As senhas não coincidem.',
+        });
         return;
     }
 
-    alert("Senha alterada com sucesso!");
-    window.location.href = 'index.html';
+    Swal.fire({
+        icon: 'success',
+        title: 'Sucesso',
+        text: 'Senha alterada com sucesso!',
+    }).then(() => {
+        // Redireciona após clicar em OK
+        window.location.href = 'index.html';
+    });
 });
