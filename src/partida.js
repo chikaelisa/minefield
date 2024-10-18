@@ -77,9 +77,4 @@ let boardGame;
 document.addEventListener("DOMContentLoaded", () => {
   renderBoard(dimension, numMines);
   setGameInicialInfos();
-
-  console.log({ dimension });
-  console.log({ numMines });
-  console.log({ gameMode });
-  // console.log({ user });
 });

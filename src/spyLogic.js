@@ -64,7 +64,6 @@ const spyAction = (board, spyButton) => {
     spyButton.style.pointerEvents = "auto";
     redefineCellAfterSpy(board);
   }, 2000);
-  console.log("chamando spy Action");
 };
 
 export const setSpyButtonClick = (board) => {
