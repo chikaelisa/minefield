@@ -3,4 +3,21 @@
 export const cleanString = (text) => {
   return text.replace(/\s+/g, " ").trim();
 };
-11;
+
+export const defineCellProps = (cell) => {
+  cell.style.color = "black";
+  cell.style.border = "1px solid #000";
+  cell.style.alignItems = "center";
+
+  if (cell.classList.contains("revealed")) {
+    cell.style.backgroundColor = "lightgray";
+  }
+  if (cell.classList.contains("mine")) {
+    cell.innerText = "💣";
+    cell.style.backgroundColor = "red";
+  }
+  if (cell.classList.contains("flagged")) {
+    cell.innerText = "🚩";
+    cell.style.backgroundColor = "white";
+  }
+};
