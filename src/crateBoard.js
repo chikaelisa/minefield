@@ -10,8 +10,6 @@ export const createBoard = (size, numMines, firstX, firstY) => {
 
   let leftMines = numMines;
 
-  console.log("firstX, fisrtY", firstX, firstY);
-
   while (leftMines > 0) {
     let x = Math.floor(Math.random() * size);
     let y = Math.floor(Math.random() * size);
