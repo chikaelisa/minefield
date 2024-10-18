@@ -2,10 +2,27 @@
 
 import { createBoard } from "./crateBoard.js";
 import { isFinishGame } from "./finishGame.js";
-import { cleanString, defineCellProps } from "./helpers.js";
+import { cleanString, defineCellProps, formatTime } from "./helpers.js";
 import { showCell } from "./showCells.js";
 import { setSpyButtonClick } from "./spyLogic.js";
-import { startTimer } from "./timers.js";
+import { rivotrilTimerInitial, showTimerText, startTimer } from "./timers.js";
+
+/* definição de variáveis globais */
+
+const gameMode = cleanString(localStorage.getItem("mode"));
+const numMines = Number(localStorage.getItem("numberBombs"));
+const dimension = Number(localStorage.getItem("dimension"));
+const username = localStorage.getItem("username");
+
+let isFirstClick = true;
+let boardGame;
+let flags = 0;
+
+export const totalSafeCells = dimension * dimension - numMines; // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
+
+/* fim da definição de variáveis globais */
+
+export const generalBoardGame = () => boardGame;
 
 const renderBoard = (size, numMines) => {
   const boardDiv = document.querySelector(".board");
@@ -25,6 +42,7 @@ const renderBoard = (size, numMines) => {
           boardGame = createBoard(size, numMines, i, j);
           startTimer(gameMode, numMines);
           setSpyButtonClick(boardGame);
+          setLeaveGameButton();
           isFirstClick = false;
         }
         showCell(i, j, boardGame);
@@ -37,11 +55,14 @@ const renderBoard = (size, numMines) => {
           cell.classList.toggle("flagged");
 
           if (cell.classList.contains("flagged")) {
+            flags++;
             defineCellProps(cell);
           } else {
+            flags--;
             cell.innerText = "";
             cell.style.backgroundColor = "blue";
           }
+          setGameFlags();
         }
       });
 
@@ -52,6 +73,9 @@ const renderBoard = (size, numMines) => {
 };
 
 const setGameInicialInfos = () => {
+  document.querySelector(".perfil_texto").innerText = `Olá, ${
+    username ?? "pessoa"
+  }`;
   document.getElementById("game-mode").innerText = `Modo: ${cleanString(
     gameMode
   )}`;
@@ -59,20 +83,50 @@ const setGameInicialInfos = () => {
     "number-mines"
   ).innerText = `Número de bombas: ${numMines}`;
   document.getElementById("dimension").innerText = `Dimensão: ${dimension}`;
+
+  setGameFlags();
+  setExitButton();
+  setTimerInicialText();
+};
+
+const setGameFlags = () => {
+  const gameFlags = document.getElementById("gameFlags");
+  gameFlags.innerText = `Bombas marcadas: ${flags}/${numMines}`;
+  if (flags > numMines) {
+    gameFlags.style.color = "red";
+  }
+  if (flags === numMines) {
+    gameFlags.style.color = "blue";
+  }
+};
+
+const setTimerInicialText = () => {
+  if (gameMode === "Rivotril") {
+    const timerRivotril = document.getElementById("timer-rivotril-div");
+    timerRivotril.style.display = "flex";
+    const seconds = rivotrilTimerInitial();
+    const { minutes, displaySeconds } = formatTime(seconds);
+    return showTimerText(["timer", "timer-rivotril"], minutes, displaySeconds);
+  }
+  showTimerText(["timer"], 0, 0);
+};
+
+const exit = () => {
+  // TODO: encerrar a conexão com o banco?
+  window.location.href = "index.html";
+};
+
+const setExitButton = () => {
+  const exitButton = document.querySelector(".exit");
+  exitButton.addEventListener("click", exit);
 };
 
 const setLeaveGameButton = () => {
-  isFinishGame(gameMode, true, false);
+  const leaveGameButton = document.querySelector(".leave-game");
+  leaveGameButton.addEventListener("click", () =>
+    isFinishGame(gameMode, true, false)
+  );
 };
-export const generalBoardGabe = () => boardGame;
-// nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
-const numMines = Number(localStorage.getItem("numberBombs"));
-const dimension = Number(localStorage.getItem("dimension"));
-export const gameMode = cleanString(localStorage.getItem("mode"));
-export const totalSafeCells = dimension * dimension - numMines;
-const user = localStorage.getItem("user");
-let isFirstClick = true;
-let boardGame;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderBoard(dimension, numMines);
