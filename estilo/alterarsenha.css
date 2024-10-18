@@ -42,7 +42,7 @@ div.section{
 
 .form_campo {
     border: 0;
-    width: 20em;
+    width: 100%;
     height: 3.5625em;
     border-radius: 20px;
     background: #e8baba;
@@ -78,3 +78,15 @@ div.section{
     font-size: 30px;
 }
 
+.eye-icon {
+    position: absolute;
+    right: 15px; 
+    cursor: pointer;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

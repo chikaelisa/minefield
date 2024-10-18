@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -83,4 +84,17 @@ p {
   font-style: normal;
   font-size: 18px;
   font-variation-settings: "wdth" 100;
+}
+
+.input-container {
+  position: relative;
+  width: 100%; 
+}
+
+.eye-icon {
+  position: absolute;
+  right: 20px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  cursor: pointer; 
 }

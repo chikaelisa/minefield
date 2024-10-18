@@ -14,6 +14,10 @@ document.querySelector('form').addEventListener('submit', function(event) {
     if (username === validUsername && password === validPassword) {
         window.location.href = "iniciar.html";
     } else {
-        alert("Usuário ou senha incorretos!");
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Usuário ou senha incorretos!'
+        });
     }
 });
