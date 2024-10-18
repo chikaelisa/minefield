@@ -70,6 +70,7 @@ const renderBoard = (size, numMines) => {
           console.log(i, j);
           boardGame = createBoard(size, numMines, i, j);
           startTimer(gameMode, numMines);
+          setSpyButtonClick(boardGame);
           isFirstClick = false;
         }
         showCell(i, j, boardGame);
@@ -100,7 +101,12 @@ function showCell(i, j, board) {
     `.cell[data-row='${i}'][data-col='${j}']`
   );
 
-  if (!cell || cell.classList.contains("revealed")) return;
+  if (
+    !cell ||
+    cell.classList.contains("revealed") ||
+    cell.classList.contains("flagged")
+  )
+    return;
 
   cell.classList.add("revealed");
   defineCellProps(cell);
@@ -183,6 +189,80 @@ const setGameInicialInfos = () => {
     "number-mines"
   ).innerText = `Número de bombas: ${numMines}`;
   document.getElementById("dimension").innerText = `Dimensão: ${dimension}`;
+};
+
+const redefineCellAfterSpy = (board) => {
+  const size = board.length;
+
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      const cell = document.querySelector(
+        `.cell[data-row='${i}'][data-col='${j}']`
+      );
+
+      if (
+        cell &&
+        !cell.classList.contains("revealed") &&
+        cell.classList.contains("spy")
+      ) {
+        cell.style.pointerEvents = "auto";
+        cell.innerText = "";
+        if (cell.classList.contains("flagged")) {
+          cell.innerText = "🚩";
+          cell.style.backgroundColor = "white";
+        } else {
+          cell.style.backgroundColor = "blue";
+        }
+
+        cell.classList.remove("spy");
+      }
+    }
+  }
+};
+
+const showCellInSpy = (board) => {
+  const size = board.length;
+
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      const cell = document.querySelector(
+        `.cell[data-row='${i}'][data-col='${j}']`
+      );
+
+      if (cell && !cell.classList.contains("revealed")) {
+        cell.classList.add("spy");
+        cell.style.pointerEvents = "none";
+
+        if (board[i][j] === "M") {
+          cell.innerText = "💣";
+          cell.style.backgroundColor = "red";
+        } else if (board[i][j] === 0) {
+          cell.innerText = "";
+          cell.style.backgroundColor = "white";
+        } else {
+          cell.innerText = board[i][j];
+          cell.style.color = "black";
+          cell.style.backgroundColor = "white";
+        }
+      }
+    }
+  }
+};
+
+const spyAction = (board, spyButton) => {
+  spyButton.style.pointerEvents = "none";
+  showCellInSpy(board);
+
+  setTimeout(() => {
+    spyButton.style.pointerEvents = "auto";
+    redefineCellAfterSpy(board);
+  }, 2000);
+  console.log("chamando spy Action");
+};
+
+const setSpyButtonClick = (board) => {
+  const spyButton = document.querySelector(".spy-button");
+  spyButton.addEventListener("click", () => spyAction(board, spyButton));
 };
 
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas

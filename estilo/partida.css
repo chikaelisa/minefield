@@ -172,7 +172,7 @@ div.partida-footer {
   justify-content: space-between;
 }
 
-div.spy {
+div.spy-button {
   display: flex;
   align-items: center;
   gap: .5em;
