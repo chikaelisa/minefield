@@ -17,8 +17,13 @@ function startGame() {
         localStorage.setItem("dimension", dimensionInput.value);
         window.location.href = 'partida.html';
     }
-    else
-        alert('Escolha uma modalidade antes de iniciar o jogo.');
+    else{
+        Swal.fire({
+            icon: 'warning',
+            title: 'Atenção!',
+            text: 'Escolha uma modalidade antes de iniciar o jogo.'
+        });
+    }
 }
 function myData(){
     window.location.href = 'meusdados.html';
