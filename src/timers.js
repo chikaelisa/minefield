@@ -1,7 +1,9 @@
 "use strict";
 
+import { isFinishGame } from "./finishGame.js";
+
 let timerInterval;
-let seconds = 0;
+let seconds;
 let inicialSecondsForRivotrilMode;
 
 const setTimeToRivotrilMode = (numMines) => {
@@ -31,6 +33,7 @@ const setTimeToRivotrilMode = (numMines) => {
 };
 
 const startTimerNormalOrRanked = () => {
+  seconds = 0;
   return (timerInterval = setInterval(() => {
     seconds++;
     const minutes = Math.floor(seconds / 60);
@@ -41,12 +44,12 @@ const startTimerNormalOrRanked = () => {
   }, 1000));
 };
 
-const startTimerRivotril = () => {
-  setTimeToRivotrilMode();
+const startTimerRivotril = (numMines) => {
+  setTimeToRivotrilMode(numMines);
   timerInterval = setInterval(() => {
     if (seconds === 0) {
       stopTimer();
-      isFinishGame();
+      isFinishGame(true, false);
       return;
     }
     seconds--;
@@ -58,9 +61,9 @@ const startTimerRivotril = () => {
   }, 1000);
 };
 
-export const startTimer = (gameMode) => {
+export const startTimer = (gameMode, numMines) => {
   if (gameMode.includes("Rivotril")) {
-    startTimerRivotril();
+    startTimerRivotril(numMines);
     return;
   }
   startTimerNormalOrRanked();
