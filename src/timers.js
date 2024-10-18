@@ -1,10 +1,16 @@
 "use strict";
 
 import { isFinishGame } from "./finishGame.js";
+import { cleanString, formatTime } from "./helpers.js";
+
+const numMines = Number(localStorage.getItem("numberBombs"));
+const gameMode = cleanString(localStorage.getItem("mode"));
 
 let timerInterval;
 let seconds;
 let inicialSecondsForRivotrilMode;
+
+export const rivotrilTimerInitial = () => inicialSecondsForRivotrilMode;
 
 const setTimeToRivotrilMode = (numMines) => {
   if (numMines <= 10) {
@@ -36,16 +42,20 @@ const startTimerNormalOrRanked = () => {
   seconds = 0;
   return (timerInterval = setInterval(() => {
     seconds++;
-    const minutes = Math.floor(seconds / 60);
-    const displaySeconds = seconds % 60;
-    document.getElementById("timer").innerText = `Tempo: ${String(
-      minutes
-    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+    const { minutes, displaySeconds } = formatTime(seconds);
+    showTimerText(["timer", "timer-rivotril"], minutes, displaySeconds);
   }, 1000));
 };
 
+export const showTimerText = (elementIds, minutes, displaySeconds) => {
+  elementIds.forEach((element) => {
+    document.getElementById(element).innerText = `Tempo: ${String(
+      minutes
+    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+  });
+};
+
 const startTimerRivotril = (numMines) => {
-  setTimeToRivotrilMode(numMines);
   timerInterval = setInterval(() => {
     if (seconds === 0) {
       stopTimer();
@@ -53,11 +63,8 @@ const startTimerRivotril = (numMines) => {
       return;
     }
     seconds--;
-    const minutes = Math.floor(seconds / 60);
-    const displaySeconds = seconds % 60;
-    document.getElementById("timer").innerText = `Tempo: ${String(
-      minutes
-    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+    const { minutes, displaySeconds } = formatTime(seconds);
+    showTimerText(["timer", "timer-rivotril"], minutes, displaySeconds);
   }, 1000);
 };
 
@@ -77,3 +84,9 @@ export const countSeconds = () => seconds;
 
 export const countSecondsForRivotrilMode = () =>
   inicialSecondsForRivotrilMode - seconds;
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (gameMode === "Rivotril") {
+    setTimeToRivotrilMode(numMines);
+  }
+});

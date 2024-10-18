@@ -21,3 +21,10 @@ export const defineCellProps = (cell) => {
     cell.style.backgroundColor = "white";
   }
 };
+
+export const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const displaySeconds = seconds % 60;
+
+  return { minutes, displaySeconds };
+};
