@@ -8,6 +8,17 @@ import {
 
 import { showAllCells } from "./showCells.js";
 
+const playAgain = () => {
+  location.reload();
+};
+
+const setPlayAgainButton = () => {
+  const playAgainDiv = document.getElementById("playAgain");
+  playAgainDiv.style.display = "flex";
+  playAgainDiv.style.cursor = "pointer";
+  playAgainDiv.addEventListener("click", playAgain);
+};
+
 export const isFinishGame = (gameMode, isDefeat, isVictory) => {
   //TODO: precisa enviar pro banco: user, modo de jogo, num de bom, dimensão e tempo em segundos
   const durationGame =
@@ -17,10 +28,12 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
     stopTimer();
     showAllCells();
     alert(`Você venceu!!! O jogo durou ${durationGame()} segundos`);
+    setPlayAgainButton();
   }
   if (isDefeat || (gameMode === "Rivotril" && Number(countSeconds()) === 0)) {
     stopTimer();
     showAllCells();
     alert(`Você perdeu. O jogo durou ${durationGame()} segundos`);
+    setPlayAgainButton();
   }
 };
