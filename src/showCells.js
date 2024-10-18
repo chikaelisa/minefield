@@ -3,7 +3,7 @@
 import { isInBoardSize } from "./crateBoard.js";
 import { isFinishGame } from "./finishGame.js";
 import { defineCellProps } from "./helpers.js";
-import { gameMode, totalSafeCells } from "./partida.js";
+import { gameMode, generalBoardGabe, totalSafeCells } from "./partida.js";
 
 export const isVictory = () => revealedSafeCells === totalSafeCells;
 
@@ -64,7 +64,8 @@ export const showCloseCells = (i, j, board) => {
   }
 };
 
-export const showAllCells = (board) => {
+export const showAllCells = () => {
+  const board = generalBoardGabe();
   const size = board.length;
 
   for (let i = 0; i < size; i++) {

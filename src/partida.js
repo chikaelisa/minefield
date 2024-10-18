@@ -22,7 +22,6 @@ const renderBoard = (size, numMines) => {
 
       cell.addEventListener("click", async () => {
         if (isFirstClick) {
-          console.log(i, j);
           boardGame = createBoard(size, numMines, i, j);
           startTimer(gameMode, numMines);
           setSpyButtonClick(boardGame);
@@ -49,6 +48,7 @@ const renderBoard = (size, numMines) => {
       boardDiv.appendChild(cell);
     }
   }
+  localStorage.setItem("boardGame", boardGame);
 };
 
 const setGameInicialInfos = () => {
@@ -64,7 +64,7 @@ const setGameInicialInfos = () => {
 const setLeaveGameButton = () => {
   isFinishGame(gameMode, true, false);
 };
-
+export const generalBoardGabe = () => boardGame;
 // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
 const numMines = Number(localStorage.getItem("numberBombs"));
 const dimension = Number(localStorage.getItem("dimension"));
