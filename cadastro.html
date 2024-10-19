@@ -50,14 +50,19 @@
 
       <div>
         <i class="fa-solid fa-lock"> <span class="campo_texto"> Senha</span></i>
-        <input class="form_campo" type="password" id="senha"> <br>
+        <div class="input-container">
+          <input id="password" class="form_campo" type="password">
+          <img class="eye-icon togglePassword" src="imagens/verSenha.png" alt="Ver senha">
+        </div><br>
       </div>
 
 
       <button class="cadastro" type="submit"><span class="cadastro_texto">Cadastrar</span></button>
 
     </form>
-  <script src="src/cadastro.js" crossorigin="anonymous"></script>
-  </body>
 
+  <script src="src/cadastro.js" crossorigin="anonymous"></script>
+  <script src="src/verSenha.js"></script>
+
+  </body>
 </html>

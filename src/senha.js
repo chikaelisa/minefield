@@ -43,6 +43,10 @@ document.querySelector('.recuperar').addEventListener('click', function() {
     if (validarCPF(cpf)) {
         window.location.href = 'alterarsenha.html'; 
     } else {
-        alert("CPF inválido!");
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'CPF inválido!'
+        });
     }
 });
