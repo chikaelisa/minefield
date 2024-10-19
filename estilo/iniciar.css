@@ -49,7 +49,7 @@ div.content {
     flex-grow: 1;
     padding-left: 1em;
     padding-right: 1em;
-    gap: 5em;   
+    gap: 5em;
     align-items: center;
     justify-content: center;
 }
@@ -75,10 +75,12 @@ div.selection-mode {
 
 button.game-mode {
     border-radius: 1em;
-    border-style: none;
+    border-style: dotted;
+    border-color: #b88b1c;
     padding: .3em;
     transition: background-color 0.4s ease;
     background-color: transparent;
+
 }
 
 button.game-mode:hover {
@@ -86,6 +88,8 @@ button.game-mode:hover {
 }
 
 button.game-mode.active {
+    border-style: solid;
+    border: gray;
     background-color: #DAA520;
 }
 
@@ -102,7 +106,7 @@ div.iniciar-options {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    align-items: center; 
+    align-items: center;
 }
 
 div.iniciar-options img {
@@ -122,7 +126,7 @@ div.game-settings-container {
 }
 
 div.bora-comecar {
-    display:flex;
+    display: flex;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
@@ -147,6 +151,7 @@ button.start-game-button:hover {
     margin-left: 2em;
     margin-top: 1.5em;
 }
+
 .perfil_historico {
     display: flex;
     align-items: center;
