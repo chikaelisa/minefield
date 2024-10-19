@@ -4,6 +4,20 @@ export const cleanString = (text) => {
   return text.replace(/\s+/g, " ").trim();
 };
 
+const insertImageOnCell = (cell, imagePath) => {
+  cell.innerText = "";
+  const alreadyHasImage = cell.querySelector("img");
+  if (alreadyHasImage) {
+    container.removeChild(alreadyHasImage);
+  }
+  const img = document.createElement("img");
+  img.src = imagePath;
+  img.alt = "mark";
+  img.width = 35;
+  img.width = 35;
+  cell.appendChild(img);
+};
+
 export const defineCellProps = (cell) => {
   cell.style.color = "black";
   cell.style.border = "1px solid #000";
@@ -13,11 +27,11 @@ export const defineCellProps = (cell) => {
     cell.style.backgroundColor = "lightgray";
   }
   if (cell.classList.contains("mine")) {
-    cell.innerText = "💣";
+    insertImageOnCell(cell, "imagens/mine.png");
     cell.style.backgroundColor = "red";
   }
   if (cell.classList.contains("flagged")) {
-    cell.innerText = "🚩";
+    insertImageOnCell(cell, "imagens/mineFlag.png");
     cell.style.backgroundColor = "white";
   }
 };
