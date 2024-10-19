@@ -26,6 +26,10 @@ p.exit {
   color: red;
   cursor: pointer;
 }
+p.leave-game {
+  color: red;
+  cursor: pointer;
+}
 
 div.title-image {
   display: flex;
@@ -172,9 +176,38 @@ div.partida-footer {
   justify-content: space-between;
 }
 
-div.spy {
+div.spy-button {
   display: flex;
   align-items: center;
   gap: .5em;
   cursor: pointer;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 50px);
+  gap: 5px;
+  justify-content: center;
+}
+.cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  background-color: blue; /* Inicialmente, todas as células são azuis */
+  color: white;
+  cursor: pointer;
+}
+.revealed {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  align-items: center;
+  background-color: lightgray; /* Quando revelada, a célula fica cinza claro */
+  color: black;
+  cursor: default;
 }
