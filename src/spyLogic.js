@@ -1,3 +1,7 @@
+"use strict";
+
+import { defineCellProps } from "./helpers.js";
+
 const redefineCellAfterSpy = (board) => {
   const size = board.length;
 
@@ -15,8 +19,7 @@ const redefineCellAfterSpy = (board) => {
         cell.style.pointerEvents = "auto";
         cell.innerText = "";
         if (cell.classList.contains("flagged")) {
-          cell.innerText = "🚩";
-          cell.style.backgroundColor = "white";
+          defineCellProps(cell);
         } else {
           cell.style.backgroundColor = "blue";
         }
