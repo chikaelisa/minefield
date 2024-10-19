@@ -11,6 +11,7 @@ const matchStatus = {
 
 const mockHistory = [
   {
+    playerName: "Fer",
     fieldSize: 30,
     gameMode: gameMode.NORMAL,
     matchTime: 240,
@@ -19,6 +20,7 @@ const mockHistory = [
     bombNumber: 10
   },
   {
+    playerName: "Fer",
     fieldSize: 40,
     gameMode: gameMode.RIVOTRIL,
     matchTime: 500,
@@ -27,6 +29,7 @@ const mockHistory = [
     bombNumber: 20
   },
   {
+    playerName: "Fer",
     fieldSize: 40,
     gameMode: gameMode.RANKING,
     matchTime: 450,
@@ -35,6 +38,7 @@ const mockHistory = [
     bombNumber: 20
   },
   {
+    playerName: "Fer",
     fieldSize: 60,
     gameMode: gameMode.RANKING,
     matchTime: 400,
@@ -46,7 +50,7 @@ const mockHistory = [
 
 function initialState() {
   mockHistory.forEach((match) => {
-    createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate);
+    createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate, match.playerName, match.fieldSize, match.bombNumber, match.gameMode);
   });
 };
 
@@ -82,7 +86,7 @@ function filterHistory(/*gameMode*/) {
 
   const filteredHistory = mockHistory.filter((match) => gameModes.includes(match.gameMode));
   filteredHistory.forEach((match) => {
-    createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate);
+    createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate, match.playerName, match.fieldSize, match.bombNumber, match.gameMode);
   });
 }
 
@@ -114,7 +118,7 @@ function formatTime(segundos) {
   return `${minutos}:${segsRestantes.toString().padStart(2, "0")}`;
 }
 
-function createGameItem(victoryStatus, time, date) {
+function createGameItem(victoryStatus, time, date, playerName, fieldSize, bombNumber, gameMode) {
 
   const gameItem = document.createElement('div');
   gameItem.classList.add('history-game-item');
@@ -170,17 +174,31 @@ function createGameItem(victoryStatus, time, date) {
   arrowText.classList.add('list-game-status');
   arrowText.textContent = formatDate(date);
 
-  const arrowIcon = document.createElement('img');
-  arrowIcon.src = 'imagens/seta-baixo.png';
-  arrowIcon.alt = 'ícone seta';
-  arrowIcon.classList.add('seta');
-
   iconTextArrow.appendChild(arrowText);
-  iconTextArrow.appendChild(arrowIcon);
+
+  const playerText = document.createElement('p');
+  playerText.classList.add('list-game-status');
+  playerText.textContent = `Jogador: ${playerName}`;
+
+  const fieldSizeText = document.createElement('p');
+  fieldSizeText.classList.add('list-game-status');
+  fieldSizeText.textContent = `Tamanho do Campo: ${fieldSize}`;
+
+  const bombNumberText = document.createElement('p');
+  bombNumberText.classList.add('list-game-status');
+  bombNumberText.textContent = `Número de Bombas: ${bombNumber}`;
+
+  const gameModeText = document.createElement('p');
+  gameModeText.classList.add('list-game-status');
+  gameModeText.textContent = `Modalidade: ${gameMode}`;
 
   gameItem.appendChild(iconTextVictory);
   gameItem.appendChild(iconTextTimer);
   gameItem.appendChild(iconTextArrow);
+  gameItem.appendChild(playerText);
+  gameItem.appendChild(fieldSizeText);
+  gameItem.appendChild(bombNumberText);
+  gameItem.appendChild(gameModeText);
 
   const gameList = document.querySelector('.history-game-list');
   gameList.appendChild(gameItem);

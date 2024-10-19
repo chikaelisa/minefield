@@ -13,9 +13,12 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
   // Verificação
   if (username === validUsername && password === validPassword) {
-    localStorage.setItem("username", username);
     window.location.href = "iniciar.html";
   } else {
-    alert("Usuário ou senha incorretos!");
+    Swal.fire({
+      icon: "error",
+      title: "Erro!",
+      text: "Usuário ou senha incorretos!",
+    });
   }
 });

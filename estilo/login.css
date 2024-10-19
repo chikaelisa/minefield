@@ -53,7 +53,7 @@ form {
     color: black;
     box-shadow: 0px 4px 4px 0px #00000040;
     padding-left: 1em;
-    padding-right: 1em;
+    padding-right: 2.5em;
 }
 
 .form_campo:focus {
@@ -118,4 +118,18 @@ i#campo_login2 {
 a, a:hover, a:focus, a:active, a:visited {
     text-decoration: none;
     color: inherit;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+    width: 20px;
+    height: 16px;
 }
