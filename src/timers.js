@@ -55,11 +55,11 @@ export const showTimerText = (elementIds, minutes, displaySeconds) => {
   });
 };
 
-const startTimerRivotril = (numMines) => {
+const startTimerRivotril = () => {
   timerInterval = setInterval(() => {
     if (seconds === 0) {
       stopTimer();
-      isFinishGame(true, false);
+      isFinishGame(gameMode, true, false);
       return;
     }
     seconds--;
@@ -70,7 +70,7 @@ const startTimerRivotril = (numMines) => {
 
 export const startTimer = (gameMode, numMines) => {
   if (gameMode.includes("Rivotril")) {
-    startTimerRivotril(numMines);
+    startTimerRivotril();
     return;
   }
   startTimerNormalOrRanked();
