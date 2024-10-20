@@ -33,18 +33,35 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
   //TODO: precisa enviar pro banco: user, modo de jogo, num de bom, dimensão e tempo em segundos
   const durationGame =
     gameMode === "Rivotril" ? countSecondsForRivotrilMode : countSeconds;
+  const gameDurationText = `O jogo durou ${durationGame()} segundos;`;
 
   if (isVictory) {
     stopTimer();
     showAllCells();
-    alert(`Você venceu!!! O jogo durou ${durationGame()} segundos`);
+    const alertText = `Você venceu!!! ${gameDurationText}`;
+    Swal.fire({
+      title: "Vitória!",
+      text: alertText,
+      imageUrl: "imagens/bandeira.png", // Caminho relativo para o seu ícone
+      imageWidth: 100, // largura da imagem
+      imageHeight: 100, // altura da imagem
+      imageAlt: "Ícone do Projeto",
+    });
     setPlayAgainButton();
     setConfigNewGameButton();
   }
   if (isDefeat || (gameMode === "Rivotril" && Number(countSeconds()) === 0)) {
     stopTimer();
     showAllCells();
-    alert(`Você perdeu. O jogo durou ${durationGame()} segundos`);
+    const alertText = `Você perdeu! ${gameDurationText}`;
+    Swal.fire({
+      title: "Derrota!",
+      text: alertText,
+      imageUrl: "imagens/bomba.png", // Caminho relativo para o seu ícone
+      imageWidth: 100, // largura da imagem
+      imageHeight: 100, // altura da imagem
+      imageAlt: "Derrota",
+    });
     setPlayAgainButton();
     setConfigNewGameButton();
   }
