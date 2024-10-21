@@ -1,4 +1,6 @@
-"use-strict";
+"use strict";
+
+import { formatTime } from "./helpers.js";
 
 const mockUsers = [
   {
@@ -28,16 +30,9 @@ const mockUsers = [
   },
 ];
 
-currentUser = "chikaelisa";
+const currentUser = localStorage.getItem("username");
 
 mockUsers.sort((a, b) => a.time - b.time);
-
-function formatTime(segundos) {
-  const minutos = Math.floor(segundos / 60);
-  const segsRestantes = segundos % 60;
-
-  return `${minutos}:${segsRestantes.toString().padStart(2, "0")}`;
-}
 
 function createRankingItem(name, tempo, index) {
   const rankingItem = document.createElement("div");
@@ -93,11 +88,11 @@ function addRankingItems() {
   const container = document.querySelector(".container");
 
   mockUsers.forEach((item, index) => {
-    const rankingItem = createRankingItem(
-      item.userName,
-      formatTime(item.time),
-      index
-    );
+    const { minutes, displaySeconds } = formatTime(item.time);
+    const displayTime = `${minutes}:${displaySeconds
+      .toString()
+      .padStart(2, "0")}`;
+    const rankingItem = createRankingItem(item.userName, displayTime, index);
     container.appendChild(rankingItem);
   });
 }
