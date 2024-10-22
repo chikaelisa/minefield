@@ -60,6 +60,53 @@ senhaInput.addEventListener('blur', function() {
     const senha = senhaInput.value;
 
     if (!validarSenha(senha)) {
-        alert('Senha inválida! A senha deve ter pelo menos 8 caracteres.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Senha inválida',
+            text: 'A senha deve ter pelo menos 8 caracteres.',
+        });
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso',
+            text: 'A senha está válida.',
+        });
+    }
+});
+
+// Verifica se houver alterações e exibe alerta
+document.querySelector('.alterar').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    const telefoneAtual = document.getElementById('telefone').value;
+    const emailAtual = document.getElementById('email').value;
+    const usernameAtual = document.getElementById('username').value;
+    const senhaAtual = document.getElementById('senha').value;
+
+    if (
+        telefoneAtual !== usermock.phone.toString() ||
+        emailAtual !== usermock.mail ||
+        usernameAtual !== usermock.username ||
+        senhaAtual !== usermock.senha
+    ) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Dados alterados com sucesso!',
+            text: 'Você será redirecionado para a página do jogo.',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'iniciar.html'; // Redireciona para iniciar.html
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'Nenhum dado alterado',
+            text: 'Você será redirecionado para a página do jogo.',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'iniciar.html'; // Redireciona para iniciar.html
+            }
+        });
     }
 });
