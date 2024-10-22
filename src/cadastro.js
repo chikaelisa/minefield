@@ -1,4 +1,6 @@
 document.querySelector(".form_cadastro").addEventListener("submit", function(event){
+    event.preventDefault();
+    
     let nome = document.getElementById("nome").value;
     let dataNascimento = document.getElementById("dataNasc").value;
     let cpf = document.getElementById("cpf").value;
@@ -8,14 +10,20 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
     let senha = document.getElementById("senha").value;
 
     if(nome.length < 1){
-        alert("Nome precisa ter pelo menos 1 caracter!")
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Nome precisa ter pelo menos 1 caracter!',
+        });
         return;
     }
 
     if (!dataNascimento) {
-        alert("Por favor, selecione uma data de nascimento.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Por favor, selecione uma data de nascimento.',
+        });
         return;
     }
 
@@ -29,37 +37,60 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
     dataAtual.setHours(0, 0, 0, 0); 
 
     if (dataNasc > dataAtual) {
-        alert("A data de nascimento tem que ser inferior à data atual.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'A data de nascimento tem que ser inferior à data atual.',
+        });
         return;
     }
 
     if (!validaCPF(cpf)) {
-        alert("CPF inválido! Verifique e tente novamente.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'CPF inválido! Verifique e tente novamente.',
+        });
         return;
     }
 
     let telefoneValido = /^\d{10,11}$/.test(telefone);
     if (!telefoneValido) {
-        alert("Verifique seu telefone e tente novamente, lembrando que o formado é este: XXXXXXXXXX.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Verifique seu telefone e tente novamente, lembrando que o formato é XXXXXXXXXX.',
+        });
         return;
     }   
 
     //html ja faz a validação do email, que tem que ter o @
 
     if (!validaUsername(user)) {
-        alert("Tente novamente! Lembre-se que o username deve ter entre 2 a 20 caracteres e não conter caracteres especiais.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Tente novamente! Lembre-se que o username deve ter entre 2 a 20 caracteres e não conter caracteres especiais.',
+        });
         return;
     }
 
     if (senha.length < 8) {
-        alert("A senha deve ter no mínimo 8 caracteres.");
-        event.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'A senha deve ter no mínimo 8 caracteres.',
+        });
         return;
     }
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: 'Cadastro realizado com sucesso!',
+    }).then(() => {
+        window.location.href = 'index.html';
+    });
 
 });
 
@@ -82,7 +113,7 @@ function validaCPF(cpf) {
     }
     let resto = (soma * 10) % 11;
     if (resto == 10 || resto == 11) resto = 0;
-    if (resto != parseInt(cpf.charAt(9))) returnfalse;
+    if (resto != parseInt(cpf.charAt(9))) return false;
         
     soma = 0;
     for (i = 0; i < 10; i++) {
@@ -90,7 +121,7 @@ function validaCPF(cpf) {
     }
     resto = (soma * 10) % 11;
     if (resto == 10 || resto == 11) resto = 0;
-    if (resto != parseInt(cpf.charAt(10))) returnfalse;
+    if (resto != parseInt(cpf.charAt(10))) return false;
         
     return true;
 }
