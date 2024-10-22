@@ -11,7 +11,7 @@ const matchStatus = {
 
 const mockHistory = [
   {
-    playerName: "Fer",
+    playerName: "Pietra",
     fieldSize: 30,
     gameMode: gameMode.NORMAL,
     matchTime: 240,
@@ -20,7 +20,7 @@ const mockHistory = [
     bombNumber: 10
   },
   {
-    playerName: "Fer",
+    playerName: "Pietra",
     fieldSize: 40,
     gameMode: gameMode.RIVOTRIL,
     matchTime: 500,
@@ -29,7 +29,7 @@ const mockHistory = [
     bombNumber: 20
   },
   {
-    playerName: "Fer",
+    playerName: "Pietra",
     fieldSize: 40,
     gameMode: gameMode.RANKING,
     matchTime: 450,
@@ -38,7 +38,7 @@ const mockHistory = [
     bombNumber: 20
   },
   {
-    playerName: "Fer",
+    playerName: "Pietra",
     fieldSize: 60,
     gameMode: gameMode.RANKING,
     matchTime: 400,
