@@ -84,14 +84,34 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
         return;
     }
 
-    Swal.fire({
-        icon: 'success',
-        title: 'Sucesso!',
-        text: 'Cadastro realizado com sucesso!',
-    }).then(() => {
-        window.location.href = 'index.html';
-    });
+    const usuario = {
+        nome: nome,
+        dataNascimento: dataNascimento,
+        cpf: cpf,
+        telefone: telefone,
+        email: email,
+        user: user,
+        senha: senha
+    };
 
+    if (cadastraUsuario(usuario)) 
+    {
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: 'Cadastro realizado com sucesso!',
+        }).then(() => {
+            window.location.href = 'index.html';
+        });
+    }
+    else 
+    {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Não foi possível realizar o cadastro.',
+        });
+    }
 });
 
 function verificaDataValida(dia, mes, ano) {
@@ -129,4 +149,24 @@ function validaCPF(cpf) {
 function validaUsername(username) {
     let usernameValido = /^[a-zA-Z0-9]{2,20}$/.test(username);
     return usernameValido;
+}
+
+function cadastraUsuario(usuario) {
+    let request = new XMLHttpRequest();
+
+    let comando = `INSERT INTO usuario VALUES ('${usuario.user}', '${usuario.cpf}', '${usuario.nome}', ${usuario.dataNascimento}, 
+                                               '${usuario.telefone}', '${usuario.email}', '${usuario.senha}')`;
+
+    request.onreadystatechange = () => {
+     if (request.readyState === XMLHttpRequest.DONE) {
+
+        if (request.status == 200)
+            return true;
+        
+        return false;
+     } 
+   };
+   request.open('POST', 'http://localhost/minefield/src/php/inserir.php', true);
+   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   request.send('comando=' + encodeURIComponent(comando));
 }

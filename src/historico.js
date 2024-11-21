@@ -1,7 +1,7 @@
 const gameMode = {
   RIVOTRIL: "rivotril",
   NORMAL: "normal",
-  RANKING: "ranking"
+  RANKING: "ranqueada"
 };
 
 const matchStatus = {
@@ -9,7 +9,9 @@ const matchStatus = {
   DEFEAT: "derrota"
 };
 
-const mockHistory = [
+let mockHistory = [];
+
+/*const mockHistory = [
   {
     playerName: "Pietra",
     fieldSize: 30,
@@ -46,7 +48,33 @@ const mockHistory = [
     matchDate: "Sat Sep 09 2024 11:01:05 GMT-0300 (Horário Padrão de Brasília)",
     bombNumber: 30
   }
-];
+];*/
+
+function fetchAll() {
+  let request = new XMLHttpRequest();
+  let comando = 'SELECT * FROM partida;';
+  
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      let convertedResponse = JSON.parse(request.responseText);
+      convertedResponse.forEach((history) => {
+          mockHistory.push({
+            playerName: history.jogador_username,
+            fieldSize: history.tamTabuleiro,
+            gameMode: history.modalidade,
+            matchTime: 400,
+            matchStatus: history.resultado,
+            matchDate: history.dataHora,
+            bombNumber: history.numBombas
+          });
+      });
+
+      initialState();
+    } 
+  };
+  request.open('GET', 'http://localhost/minefield/src/php/consultar.php?comando=' + encodeURIComponent(comando), true);
+  request.send();
+}
 
 function initialState() {
   mockHistory.forEach((match) => {
@@ -250,5 +278,5 @@ checkboxRanked.addEventListener("change", function() {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  initialState();
+  fetchAll();
 });
