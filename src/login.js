@@ -38,9 +38,21 @@ function login(username, password) {
       if (request.status == 200)
       {
           const passwordJson = JSON.parse(request.responseText);
+
+          if (!passwordJson.length)
+          {
+            Swal.fire({
+              icon: "error",
+              title: "Erro!",
+              text: "Usuário ou senha incorretos!",
+            });
+            return;
+          }
          
           if (password == passwordJson[0].senha)
-            window.location.href = "iniciar.html";
+          {
+            createSession(username);
+          }
           else
           {
             Swal.fire({
@@ -55,7 +67,7 @@ function login(username, password) {
         Swal.fire({
           icon: "error",
           title: "Erro!",
-          text: "Um erro ocorreu ao realizar o login",
+          text: "Um erro ocorreu ao realizar o login.",
         });
       }
       
@@ -63,5 +75,30 @@ function login(username, password) {
   };
   request.open('GET', 'http://localhost/minefield/src/php/consultar.php?comando=' + encodeURIComponent(comando), true);
   request.send();
+}
 
+function createSession(username) {
+  
+  let request = new XMLHttpRequest();
+
+  request.onreadystatechange = () => {
+   if (request.readyState === XMLHttpRequest.DONE) {
+    if (request.status == 200)
+    {
+      localStorage.setItem("username", username);
+      window.location.href = "iniciar.php";
+    }
+    else
+      {
+        Swal.fire({
+          icon: "error",
+          title: "Erro!",
+          text: "Não foi possível iniciar a sessão.",
+        });
+      }
+   } 
+   };
+   request.open('POST', 'http://localhost/minefield/src/php/criarSessao.php', true);
+   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   request.send('user=' + encodeURIComponent(username));
 }

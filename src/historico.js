@@ -52,7 +52,10 @@ let mockHistory = [];
 
 function fetchAll() {
   let request = new XMLHttpRequest();
-  let comando = 'SELECT * FROM partida;';
+  const loggedUser = localStorage.getItem('username');
+  let comando = `SELECT * 
+                   FROM partida
+                  WHERE jogador_username = '${loggedUser}';`;
   
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {

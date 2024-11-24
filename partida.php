@@ -2,6 +2,12 @@
 
 <html lang="PT-br">
 
+<?php
+
+  include('src/php/verificaSessao.php');
+
+?>
+
 <!-- image credit <a href="https://www.flaticon.com/free-icons/hourglass" title="hourglass icons">Hourglass icons created by Freepik - Flaticon</a>   -->
 
 <head>
@@ -35,14 +41,14 @@
 
   <div class="content">
     <div class="options-ranking-history">
-      <a href="ranking.html">
+      <a href="ranking.php">
         <div class="iniciar-options">
           <img src="imagens/trofeu.png" alt="Imagem ranking">
           <p class="icon-text">Ranking</p>
         </div>
       </a>
 
-      <a href="historico.html">
+      <a href="historico.php">
         <div class="iniciar-options">
           <img src="imagens/historico.png" alt="Imagem historico">
           <p class="icon-text">Histórico</p>

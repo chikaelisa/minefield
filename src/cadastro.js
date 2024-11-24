@@ -1,3 +1,5 @@
+import { verifyLoggedUser } from "./helpers.js";
+
 document.querySelector(".form_cadastro").addEventListener("submit", function(event){
     event.preventDefault();
     
@@ -94,24 +96,7 @@ document.querySelector(".form_cadastro").addEventListener("submit", function(eve
         senha: senha
     };
 
-    if (cadastraUsuario(usuario)) 
-    {
-        Swal.fire({
-            icon: 'success',
-            title: 'Sucesso!',
-            text: 'Cadastro realizado com sucesso!',
-        }).then(() => {
-            window.location.href = 'index.html';
-        });
-    }
-    else 
-    {
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro',
-            text: 'Não foi possível realizar o cadastro.',
-        });
-    }
+    cadastraUsuario(usuario);
 });
 
 function verificaDataValida(dia, mes, ano) {
@@ -161,12 +146,26 @@ function cadastraUsuario(usuario) {
      if (request.readyState === XMLHttpRequest.DONE) {
 
         if (request.status == 200)
-            return true;
-        
-        return false;
+        {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: 'Cadastro realizado com sucesso!',
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        }
+        else
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Não foi possível realizar o cadastro.',
+            });
+        }
      } 
    };
-   request.open('POST', 'http://localhost/minefield/src/php/inserir.php', true);
+   request.open('POST', 'http://localhost/minefield/src/php/inserir.php', false);
    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
    request.send('comando=' + encodeURIComponent(comando));
 }

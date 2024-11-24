@@ -2,7 +2,7 @@
 
 import { createBoard } from "./crateBoard.js";
 import { isFinishGame } from "./finishGame.js";
-import { cleanString, defineCellProps, formatTime } from "./helpers.js";
+import { cleanString, defineCellProps, formatTime, getLoggedUser } from "./helpers.js";
 import { showCell } from "./showCells.js";
 import { setSpyButtonClick } from "./spyLogic.js";
 import { rivotrilTimerInitial, showTimerText, startTimer } from "./timers.js";
