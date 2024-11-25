@@ -1,7 +1,7 @@
-const gameMode = {
-  RIVOTRIL: "rivotril",
-  NORMAL: "normal",
-  RANKING: "ranqueada"
+const gameMode = { //historico.js
+  RIVOTRIL: "Rivotril",
+  NORMAL: "Normal",
+  RANKING: "Ranqueada"
 };
 
 const matchStatus = {
@@ -51,23 +51,43 @@ let mockHistory = [];
 ];*/
 
 function fetchAll() {
+
   let request = new XMLHttpRequest();
   const loggedUser = localStorage.getItem('username');
-  let comando = `SELECT * 
+
+  let comando = `SELECT *
                    FROM partida
                   WHERE jogador_username = '${loggedUser}';`;
   
   request.onreadystatechange = () => {
+
     if (request.readyState === XMLHttpRequest.DONE) {
+
       let convertedResponse = JSON.parse(request.responseText);
+
+      let modalidade = '';
+      console.log(convertedResponse)
+
       convertedResponse.forEach((history) => {
+          
+          if (history.modalidade.includes('Rivotril'))
+            modalidade = 'Rivotril';
+          
+          if (history.modalidade.includes('Normal'))
+            modalidade = 'Normal';
+
+          if (history.modalidade.includes('Ranqueada'))
+            modalidade = 'Ranqueada';
+
+          console.log(formatDate(history.dataPartida))
+
           mockHistory.push({
             playerName: history.jogador_username,
             fieldSize: history.tamTabuleiro,
-            gameMode: history.modalidade,
-            matchTime: 400,
+            gameMode: modalidade,
+            matchTime: history.tempoPartida,
+            matchDate: formatDate(history.dataPartida),
             matchStatus: history.resultado,
-            matchDate: history.dataHora,
             bombNumber: history.numBombas
           });
       });
@@ -115,10 +135,14 @@ function filterHistory(/*gameMode*/) {
 
   removeAll("history-game-list");
 
+  console.log('1: ' + gameModes)
+
   const filteredHistory = mockHistory.filter((match) => gameModes.includes(match.gameMode));
   filteredHistory.forEach((match) => {
     createGameItem(match.matchStatus, formatTime(match.matchTime), match.matchDate, match.playerName, match.fieldSize, match.bombNumber, match.gameMode);
   });
+
+  console.log('2: ' + mockHistory.gameMode)
 }
 
 function removeAll(id) {
@@ -132,14 +156,18 @@ const rankingMatches = filterHistory(gameMode.RANKING);*/
 
 function formatDate(dateString) {
 
-  const date = new Date(dateString);
-
-
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
+  const year  = dateString.split('-')[0];
+  const month  = dateString.split('-')[1];
+  const day  = dateString.split('-')[2];
 
   return `${day}/${month}/${year}`;
+ /*const [year, month, day] = dateString.split('-');
+ const date = new Date(Date.UTC(year, month - 1, day)); 
+ if (isNaN(date.getTime())) {
+     return "Data inválida";
+ }
+ const finalDate = date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+ return finalDate;*/
 }
 
 function formatTime(segundos) {
@@ -203,7 +231,7 @@ function createGameItem(victoryStatus, time, date, playerName, fieldSize, bombNu
 
   const arrowText = document.createElement('p');
   arrowText.classList.add('list-game-status');
-  arrowText.textContent = formatDate(date);
+  arrowText.textContent = `Data: ${date}`;
 
   iconTextArrow.appendChild(arrowText);
 

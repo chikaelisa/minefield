@@ -43,11 +43,14 @@ const saveGame = (gameStatus, gameDuration) => {
   const numberBombs = localStorage.getItem("numberBombs");
   const dimension = localStorage.getItem("dimension");
 
+  let date = new Date();
+  date = date.toISOString().split('T')[0]
+
   let request = new XMLHttpRequest();
   let comando = `INSERT INTO partida (jogador_username, modalidade, tamTabuleiro,
-                                      numBombas, resultado, tempoPartida)
+                                      numBombas, resultado, tempoPartida, dataPartida)
                               VALUES ('${loggeduser}', '${gameMode}', ${dimension}, ${numberBombs}, 
-                                      '${gameStatus}', ${gameDuration})`;                                     
+                                      '${gameStatus}', ${gameDuration}, '${date}')`;                                     
 
   request.onreadystatechange = () => {
    if (request.readyState === XMLHttpRequest.DONE) {

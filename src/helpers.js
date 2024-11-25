@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; //helpers.js
 
 export const cleanString = (text) => {
   return text.replace(/\s+/g, " ").trim();
@@ -41,6 +41,12 @@ export const formatTime = (seconds) => {
   const displaySeconds = seconds % 60;
 
   return { minutes, displaySeconds };
+};
+
+export const destroySession = () => {
+  let request = new XMLHttpRequest();
+  request.open('GET', 'http://localhost/minefield/src/php/encerrarSessao.php', true);
+  request.send();
 };
 
 export const getLoggedUser = () => {

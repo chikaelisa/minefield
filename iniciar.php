@@ -27,7 +27,7 @@
             <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
             <span class="perfil_texto">Olá, {username}</span>
         </div>
-        <p onclick="goBack()" class="exit">Sair</p>
+        <p onclick="goBack(); destroySession();" class="exit">Sair</p>
 
     </header>
 
@@ -82,7 +82,7 @@
                             <span class="game-mode-text">Rivotril</span>
                         </button>
                         <button id="rankedButton" class="game-mode" type="button">
-                            <span class="game-mode-text">Rankeada</span>
+                            <span class="game-mode-text">Ranqueada</span>
                         </button>
                     </div>
                 </div>

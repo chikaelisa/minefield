@@ -32,7 +32,7 @@
       <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
       <span class="perfil_texto">Olá, {username}</span>
     </div>
-    <p class="exit">Sair</p>
+    <p onclick="destroySession()" class="exit">Sair</p>
   </header>
 
   <div class="title-image">

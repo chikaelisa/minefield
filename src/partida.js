@@ -18,6 +18,12 @@ let isFirstClick = true;
 let boardGame;
 let flags = 0;
 
+function destroySession() {
+  let request = new XMLHttpRequest();
+  request.open('GET', 'http://localhost/minefield/src/php/encerrarSessao.php', true);
+  request.send();
+}
+
 export const totalSafeCells = dimension * dimension - numMines; // nas configurações, vamos deixar no máximo um tabuleiro 20x20, 200 bombas
 
 /* fim da definição de variáveis globais */

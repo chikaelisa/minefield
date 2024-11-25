@@ -1,4 +1,4 @@
-const usermock = {
+const usermock = { //alteraDados.js
     /*fullName: 'Pietra Ferreira',
     birthDate: 'Tue Oct 03 2024 12:34:56 GMT-0300 (Brasilia Standard Time)',
     CPF: 66555577045,
@@ -96,7 +96,7 @@ document.querySelector('.alterar').addEventListener('click', function(event) {
             text: 'Você será redirecionado para a página do jogo.',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'iniciar.html'; // Redireciona para iniciar.html
+                window.location.href = 'iniciar.php'; // Redireciona para iniciar.html
             }
         });
     }
@@ -171,7 +171,7 @@ function changeDataLoggedUser(loggedUser, telefoneAtual, emailAtual, usernameAtu
             }).then((result) => {
                 if (result.isConfirmed) {
                     localStorage.setItem("username", usernameAtual);
-                    window.location.href = 'iniciar.html';
+                    window.location.href = 'iniciar.php';
                 }
             });
         }
