@@ -7,7 +7,6 @@ import {
 } from "./timers.js";
 
 import { showAllCells } from "./showCells.js";
-import { getLoggedUser } from "./helpers.js";
 
 const playAgain = () => {
   location.reload();
@@ -31,13 +30,11 @@ const setConfigNewGameButton = () => {
 };
 
 const saveGame = (gameStatus, gameDuration) => {
-
   const loggeduser = localStorage.getItem("username");
 
-  console.log(loggeduser)
+  console.log(loggeduser);
 
-  if (!loggeduser)
-    return false;
+  if (!loggeduser) return false;
 
   const gameMode = localStorage.getItem("mode");
   const numberBombs = localStorage.getItem("numberBombs");
@@ -47,32 +44,28 @@ const saveGame = (gameStatus, gameDuration) => {
   let comando = `INSERT INTO partida (jogador_username, modalidade, tamTabuleiro,
                                       numBombas, resultado, tempoPartida)
                               VALUES ('${loggeduser}', '${gameMode}', ${dimension}, ${numberBombs}, 
-                                      '${gameStatus}', ${gameDuration})`;                                     
+                                      '${gameStatus}', ${gameDuration})`;
 
   request.onreadystatechange = () => {
-   if (request.readyState === XMLHttpRequest.DONE) {
-
-      if (request.status != 200)
-      {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status != 200) {
         Swal.fire({
-          icon: 'alert',
-          title: 'Alerta',
-          text: 'Um problema ocorreu ao salvar os dados da partida',
+          icon: "alert",
+          title: "Alerta",
+          text: "Um problema ocorreu ao salvar os dados da partida",
         });
       }
-      
-   } 
- };
- request.open('POST', 'http://localhost/minefield/src/php/inserir.php', true);
- request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
- request.send('comando=' + encodeURIComponent(comando));
-
+    }
+  };
+  request.open("POST", "http://localhost/minefield/src/php/inserir.php", true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.send("comando=" + encodeURIComponent(comando));
 };
 
 export const isFinishGame = (gameMode, isDefeat, isVictory) => {
   //TODO: precisa enviar pro banco: user, modo de jogo, num de bom, dimensão e tempo em segundos
   const durationGame =
-    gameMode === "Rivotril" ? countSecondsForRivotrilMode : countSeconds;
+    gameMode === "RIVOTRIL" ? countSecondsForRivotrilMode : countSeconds;
   const gameDurationText = `O jogo durou ${durationGame()} segundos;`;
 
   if (isVictory) {
@@ -87,19 +80,11 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
       imageHeight: 100, // altura da imagem
       imageAlt: "Ícone do Projeto",
     });
-    /*if (!saveGame('vitória', durationGame()))
-    {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Não foi possível salvar os dados da partida.',
-        });
-    }*/
     setPlayAgainButton();
     setConfigNewGameButton();
-    saveGame('vitória', durationGame());
+    saveGame("VITORIA", durationGame());
   }
-  if (isDefeat || (gameMode === "Rivotril" && Number(countSeconds()) === 0)) {
+  if (isDefeat || (gameMode === "RIVOTRIL" && Number(countSeconds()) === 0)) {
     stopTimer();
     showAllCells();
     const alertText = `Você perdeu! ${gameDurationText}`;
@@ -111,16 +96,8 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
       imageHeight: 100, // altura da imagem
       imageAlt: "Derrota",
     });
-    /*if (!saveGame('derrota', durationGame()))
-    {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Não foi possível salvar os dados da partida.',
-        });
-    }*/
     setPlayAgainButton();
     setConfigNewGameButton();
-    saveGame('derrota', durationGame());
+    saveGame("DERROTA", durationGame());
   }
 };

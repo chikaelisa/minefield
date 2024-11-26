@@ -1,12 +1,12 @@
 const gameMode = {
-  RIVOTRIL: "rivotril",
-  NORMAL: "normal",
-  RANKING: "ranqueada",
+  RIVOTRIL: "RIVOTRIL",
+  NORMAL: "NORMAL",
+  RANKING: "RANQUEADA",
 };
 
 const matchStatus = {
-  VICTORY: "vitória",
-  DEFEAT: "derrota",
+  VICTORY: "VITORIA",
+  DEFEAT: "DERROTA",
 };
 
 let mockHistory = [];
@@ -105,10 +105,6 @@ function removeAll(id) {
   const div = document.getElementById(id);
   div.replaceChildren();
 }
-
-/*const normalMatches = filterHistory(gameMode.NORMAL);
-const rivotrilMatches = filterHistory(gameMode.RIVOTRIL);
-const rankingMatches = filterHistory(gameMode.RANKING);*/
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -234,34 +230,25 @@ var checkboxRanked = document.getElementById("ranked");
 
 checkboxNormal.addEventListener("change", function () {
   if (checkboxNormal.checked) {
-    //removeAll("history-game-list");
-    filterHistory(/*gameMode.NORMAL*/);
+    filterHistory();
   } else {
     filterHistory();
-    //removeAll("history-game-list");
-    //initialState();
   }
 });
 
 checkboxRivotril.addEventListener("change", function () {
   if (checkboxRivotril.checked) {
-    //removeAll("history-game-list");
-    filterHistory(/*gameMode.RIVOTRIL*/);
+    filterHistory();
   } else {
     filterHistory();
-    //removeAll("history-game-list");
-    //initialState();
   }
 });
 
 checkboxRanked.addEventListener("change", function () {
   if (checkboxRanked.checked) {
-    //removeAll("history-game-list");
-    filterHistory(/*gameMode.RANKING*/);
+    filterHistory();
   } else {
     filterHistory();
-    //removeAll("history-game-list");
-    //initialState();
   }
 });
 

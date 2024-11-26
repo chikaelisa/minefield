@@ -2,35 +2,7 @@
 
 import { formatTime } from "./helpers.js";
 
-let mockUsers = []
-
-/*const mockUsers = [
-  {
-    userName: "enzito",
-    time: 240,
-    nickName: "Enzo",
-  },
-  {
-    userName: "fernandinha",
-    time: 245,
-    nickName: "Fernanda",
-  },
-  {
-    userName: "chikaelisa",
-    time: 300,
-    nickName: "Chika",
-  },
-  {
-    userName: "ste",
-    time: 200,
-    nickName: "Stephani",
-  },
-  {
-    userName: "pipi",
-    time: 198,
-    nickName: "Pietra",
-  },
-];*/
+let mockUsers = [];
 
 const currentUser = localStorage.getItem("username");
 
@@ -103,10 +75,10 @@ function loadRanking() {
   let request = new XMLHttpRequest();
   let comando = `SELECT jogador_username, tempoPartida
                    FROM campominado.partida
-                  WHERE resultado = 'vitória'
-                  ORDER BY tamTabuleiro DESC, tempoPartida
+                  WHERE resultado = 'VITORIA' AND modalidade = 'RANQUEADA'
+                  ORDER BY tempoPartida
                   LIMIT 10;`;
-  
+
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {
       if (request.status == 200) {
@@ -118,17 +90,21 @@ function loadRanking() {
           });
         });
         addRankingItems();
-      }
-      else {
+      } else {
         Swal.fire({
           icon: "error",
           title: "Erro!",
           text: "Não foi possível recuperar os dados do ranking.",
         });
       }
-    } 
+    }
   };
-  request.open('GET', 'http://localhost/minefield/src/php/consultar.php?comando=' + encodeURIComponent(comando), true);
+  request.open(
+    "GET",
+    "http://localhost/minefield/src/php/consultar.php?comando=" +
+      encodeURIComponent(comando),
+    true
+  );
   request.send();
 }
 
