@@ -26,9 +26,9 @@ function fetchAll() {
           playerName: history.jogador_username,
           fieldSize: history.tamTabuleiro,
           gameMode: history.modalidade,
-          matchTime: 400,
+          matchTime: history.tempoPartida,
           matchStatus: history.resultado,
-          matchDate: history.dataHora,
+          matchDate: formatDate(history.dataPartida),
           bombNumber: history.numBombas,
         });
       });
@@ -107,11 +107,9 @@ function removeAll(id) {
 }
 
 function formatDate(dateString) {
-  const date = new Date(dateString);
-
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
+  const year = dateString.split("-")[0];
+  const month = dateString.split("-")[1];
+  const day = dateString.split("-")[2];
 
   return `${day}/${month}/${year}`;
 }
@@ -182,7 +180,7 @@ function createGameItem(
 
   const arrowText = document.createElement("p");
   arrowText.classList.add("list-game-status");
-  arrowText.textContent = formatDate(date);
+  arrowText.textContent = date;
 
   iconTextArrow.appendChild(arrowText);
 
@@ -212,16 +210,6 @@ function createGameItem(
 
   const gameList = document.querySelector(".history-game-list");
   gameList.appendChild(gameItem);
-}
-
-function listRankingMatches() {
-  rankingMatches.forEach((match) => {
-    createGameItem(
-      match.matchStatus,
-      formatTime(match.matchTime),
-      match.matchDate
-    );
-  });
 }
 
 var checkboxNormal = document.getElementById("normal");

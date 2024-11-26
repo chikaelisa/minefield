@@ -38,17 +38,17 @@
                 Tipo de Partida
             </p>
             <div class="selection-checkbox">
-                <input type="checkbox" id="normal" name="normal" value="normal" checked>
+                <input type="checkbox" id="normal" name="normal" value="NORMAL" checked>
                 <label for="normal"></label>
                 <span>Normal</span>
             </div>
             <div class="selection-checkbox">
-                <input type="checkbox" id="rivotril" name="rivotril" value="rivotril" checked>
+                <input type="checkbox" id="rivotril" name="rivotril" value="RIVOTRIL" checked>
                 <label for="rivotril"></label>
                 <span>Rivotril</span>
             </div>
             <div class="selection-checkbox">
-                <input type="checkbox" id="ranked" name="ranked" value="ranked" checked>
+                <input type="checkbox" id="ranked" name="ranked" value="RANQUEADA" checked>
                 <label for="ranked"></label>
                 <span>Ranqueada</span>
             </div>

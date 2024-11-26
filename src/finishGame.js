@@ -29,22 +29,26 @@ const setConfigNewGameButton = () => {
   );
 };
 
-const saveGame = (gameStatus, gameDuration) => {
+const saveGame = (gameStatus, gameMode, gameDuration) => {
   const loggeduser = localStorage.getItem("username");
 
   console.log(loggeduser);
 
   if (!loggeduser) return false;
 
-  const gameMode = localStorage.getItem("mode");
+  let date = new Date();
+  date = date.toISOString().split("T")[0];
+
   const numberBombs = localStorage.getItem("numberBombs");
   const dimension = localStorage.getItem("dimension");
 
   let request = new XMLHttpRequest();
   let comando = `INSERT INTO partida (jogador_username, modalidade, tamTabuleiro,
-                                      numBombas, resultado, tempoPartida)
+                                      numBombas, resultado, tempoPartida, dataPartida)
                               VALUES ('${loggeduser}', '${gameMode}', ${dimension}, ${numberBombs}, 
-                                      '${gameStatus}', ${gameDuration})`;
+                                      '${gameStatus}', ${gameDuration}, '${date}')`;
+
+  console.log({ comando });
 
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {
@@ -82,7 +86,7 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
     });
     setPlayAgainButton();
     setConfigNewGameButton();
-    saveGame("VITORIA", durationGame());
+    saveGame("VITORIA", gameMode, Number(countSeconds()));
   }
   if (isDefeat || (gameMode === "RIVOTRIL" && Number(countSeconds()) === 0)) {
     stopTimer();
@@ -98,6 +102,6 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
     });
     setPlayAgainButton();
     setConfigNewGameButton();
-    saveGame("DERROTA", durationGame());
+    saveGame("DERROTA", gameMode, Number(countSeconds()));
   }
 };

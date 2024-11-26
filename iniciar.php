@@ -76,13 +76,13 @@
                     <span class="perfil_texto">Modalidade</span>
                     <div class="selection-mode">
                         <button class="game-mode" type="button">
-                            <span class="game-mode-text">Normal</span>
+                            <span class="game-mode-text">NORMAL</span>
                         </button>
                         <button class="game-mode" type="button">
-                            <span class="game-mode-text">Rivotril</span>
+                            <span class="game-mode-text">RIVOTRIL</span>
                         </button>
                         <button id="rankedButton" class="game-mode" type="button">
-                            <span class="game-mode-text">Rankeada</span>
+                            <span class="game-mode-text">RANQUEADA</span>
                         </button>
                     </div>
                 </div>

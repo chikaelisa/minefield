@@ -12,7 +12,7 @@ function startGame() {
     localStorage.setItem("mode", selectedButton.textContent);
     localStorage.setItem("numberBombs", bombsInput.value);
     localStorage.setItem("dimension", dimensionInput.value);
-    window.location.href = "partida.html";
+    window.location.href = "partida.php";
   } else {
     Swal.fire({
       icon: "warning",
