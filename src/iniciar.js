@@ -1,8 +1,15 @@
-const buttons = document.querySelectorAll(".game-mode");
+const buttons = document.querySelectorAll(".game-mode"); //iniciar.js
 
 function goBack() {
   window.location.href = "index.html";
 }
+
+function destroySession() {
+  let request = new XMLHttpRequest();
+  request.open('GET', 'http://localhost/minefield/src/php/encerrarSessao.php', true);
+  request.send();
+}
+
 function startGame() {
   const selectedButton = document.querySelector(".active");
   const dimensionInput = document.getElementById("dimensao");
@@ -22,7 +29,7 @@ function startGame() {
   }
 }
 function myData() {
-  window.location.href = "meusdados.html";
+  window.location.href = "meusdados.php";
 }
 
 function displayUsername() {

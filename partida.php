@@ -32,7 +32,7 @@
       <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
       <span class="perfil_texto">Olá, {username}</span>
     </div>
-    <p class="exit">Sair</p>
+    <p onclick="destroySession()" class="exit">Sair</p>
   </header>
 
   <div class="title-image">
@@ -94,11 +94,6 @@
         <div class="iniciar-options" id="timer-rivotril-div" style="display: none;">
           <img src="imagens/ampulheta.png" alt="tempo rivotril">
           <p class="icon-text" id="timer-rivotril"></p>
-        </div>
-
-        <div class="iniciar-options" id="playAgain" style="display: none;">
-          <img src="imagens/replay.png" alt="replay">
-          <p class="icon-text" >Jogar Novamente</p>
         </div>
 
         <div class="iniciar-options" id="configNewGame" style="display: none;">

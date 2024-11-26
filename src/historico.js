@@ -14,21 +14,34 @@ let mockHistory = [];
 function fetchAll() {
   let request = new XMLHttpRequest();
   const loggedUser = localStorage.getItem("username");
-  let comando = `SELECT * 
+
+  let comando = `SELECT *
                    FROM partida
                   WHERE jogador_username = '${loggedUser}';`;
 
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {
       let convertedResponse = JSON.parse(request.responseText);
+
+      let modalidade = "";
+      console.log(convertedResponse);
+
       convertedResponse.forEach((history) => {
+        if (history.modalidade.includes("RIVOTRIL")) modalidade = "RIVOTRIL";
+
+        if (history.modalidade.includes("NORMAL")) modalidade = "NORMAL";
+
+        if (history.modalidade.includes("RANQUEADA")) modalidade = "RANQUEADA";
+
+        console.log(formatDate(history.dataPartida));
+
         mockHistory.push({
           playerName: history.jogador_username,
           fieldSize: history.tamTabuleiro,
-          gameMode: history.modalidade,
+          gameMode: modalidade,
           matchTime: history.tempoPartida,
-          matchStatus: history.resultado,
           matchDate: formatDate(history.dataPartida),
+          matchStatus: history.resultado,
           bombNumber: history.numBombas,
         });
       });
@@ -99,6 +112,8 @@ function filterHistory(/*gameMode*/) {
       match.gameMode
     );
   });
+
+  console.log("2: " + mockHistory.gameMode);
 }
 
 function removeAll(id) {
@@ -180,7 +195,7 @@ function createGameItem(
 
   const arrowText = document.createElement("p");
   arrowText.classList.add("list-game-status");
-  arrowText.textContent = date;
+  arrowText.textContent = `Data: ${date}`;
 
   iconTextArrow.appendChild(arrowText);
 

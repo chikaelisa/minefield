@@ -26,7 +26,10 @@ CREATE TABLE Partida (
     resultado VARCHAR(10),
     dataPartida DATE NOT NULL,
     tempoPartida INT NOT NULL,
-    CONSTRAINT FK_Jogador FOREIGN KEY (jogador_username) REFERENCES Usuario(username)
+    CONSTRAINT FK_Jogador 
+    	FOREIGN KEY (jogador_username) 
+    	REFERENCES Usuario(username)
+    
 );
 
 

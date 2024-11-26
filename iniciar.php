@@ -27,7 +27,7 @@
             <img class="logo-user" src="imagens/perfil.png" alt="Imagem perfil">
             <span class="perfil_texto">Olá, {username}</span>
         </div>
-        <p onclick="goBack()" class="exit">Sair</p>
+        <p onclick="goBack(); destroySession();" class="exit">Sair</p>
 
     </header>
 

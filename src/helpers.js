@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; //helpers.js
 
 export const cleanString = (text) => {
   return text.replace(/\s+/g, " ").trim();
@@ -43,23 +43,34 @@ export const formatTime = (seconds) => {
   return { minutes, displaySeconds };
 };
 
+export const destroySession = () => {
+  let request = new XMLHttpRequest();
+  request.open(
+    "GET",
+    "http://localhost/minefield/src/php/encerrarSessao.php",
+    true
+  );
+  request.send();
+};
+
 export const getLoggedUser = () => {
-  const loggedUser = '';
+  const loggedUser = "";
   let request = new XMLHttpRequest();
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {
       if (request.status == 200) {
         loggedUser = request.responseText;
 
-        if (!loggedUser)
-          return '';
+        if (!loggedUser) return "";
 
         return loggedUser;
-      }
-      else
-        return '';
-    } 
+      } else return "";
+    }
   };
-  request.open('GET', 'http://localhost/minefield/src/php/obterUsuarioSessao.php', true);
+  request.open(
+    "GET",
+    "http://localhost/minefield/src/php/obterUsuarioSessao.php",
+    true
+  );
   request.send();
 };
