@@ -2,37 +2,11 @@
 
 import { formatTime } from "./helpers.js";
 
-const mockUsers = [
-  {
-    userName: "enzito",
-    time: 240,
-    nickName: "Enzo",
-  },
-  {
-    userName: "fernandinha",
-    time: 245,
-    nickName: "Fernanda",
-  },
-  {
-    userName: "chikaelisa",
-    time: 300,
-    nickName: "Chika",
-  },
-  {
-    userName: "ste",
-    time: 200,
-    nickName: "Stephani",
-  },
-  {
-    userName: "pipi",
-    time: 198,
-    nickName: "Pietra",
-  },
-];
+let mockUsers = [];
 
 const currentUser = localStorage.getItem("username");
 
-mockUsers.sort((a, b) => a.time - b.time);
+//mockUsers.sort((a, b) => a.time - b.time);
 
 function createRankingItem(name, tempo, index) {
   const rankingItem = document.createElement("div");
@@ -97,6 +71,43 @@ function addRankingItems() {
   });
 }
 
+function loadRanking() {
+  let request = new XMLHttpRequest();
+  let comando = `SELECT jogador_username, tempoPartida
+                   FROM campominado.partida
+                  WHERE resultado = 'VITORIA' AND modalidade = 'RANQUEADA'
+                  ORDER BY tempoPartida
+                  LIMIT 10;`;
+
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status == 200) {
+        let convertedResponse = JSON.parse(request.responseText);
+        convertedResponse.forEach((item) => {
+          mockUsers.push({
+            userName: item.jogador_username,
+            time: item.tempoPartida,
+          });
+        });
+        addRankingItems();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Erro!",
+          text: "Não foi possível recuperar os dados do ranking.",
+        });
+      }
+    }
+  };
+  request.open(
+    "GET",
+    "http://localhost/minefield/src/php/consultar.php?comando=" +
+      encodeURIComponent(comando),
+    true
+  );
+  request.send();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  addRankingItems();
+  loadRanking();
 });

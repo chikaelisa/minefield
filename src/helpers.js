@@ -42,3 +42,24 @@ export const formatTime = (seconds) => {
 
   return { minutes, displaySeconds };
 };
+
+export const getLoggedUser = () => {
+  const loggedUser = '';
+  let request = new XMLHttpRequest();
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status == 200) {
+        loggedUser = request.responseText;
+
+        if (!loggedUser)
+          return '';
+
+        return loggedUser;
+      }
+      else
+        return '';
+    } 
+  };
+  request.open('GET', 'http://localhost/minefield/src/php/obterUsuarioSessao.php', true);
+  request.send();
+};

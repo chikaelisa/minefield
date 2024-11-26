@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 
+<?php
+
+  include('src/php/verificaSessao.php');
+
+?>
+
 <html lang="PT-br">
 
   <head>
@@ -16,7 +22,7 @@
 
   <body>
 
-    <form class="form_cadastro" action="iniciar.html" method="get">
+    <form class="form_cadastro" action="iniciar.php" method="get">
 
       <p>Meus Dados</p>
 

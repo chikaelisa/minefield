@@ -168,3 +168,33 @@ function cadastraUsuario(usuario) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.send("comando=" + encodeURIComponent(comando));
 }
+
+function cadastraUsuario(usuario) {
+  let request = new XMLHttpRequest();
+
+  let comando = `INSERT INTO usuario VALUES ('${usuario.user}', '${usuario.cpf}', '${usuario.nome}', ${usuario.dataNascimento}, 
+                                               '${usuario.telefone}', '${usuario.email}', '${usuario.senha}')`;
+
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status == 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucesso!",
+          text: "Cadastro realizado com sucesso!",
+        }).then(() => {
+          window.location.href = "index.html";
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Erro",
+          text: "Não foi possível realizar o cadastro.",
+        });
+      }
+    }
+  };
+  request.open("POST", "http://localhost/minefield/src/php/inserir.php", false);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.send("comando=" + encodeURIComponent(comando));
+}

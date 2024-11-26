@@ -20,17 +20,18 @@ function login(username, password) {
       if (request.status == 200) {
         const passwordJson = JSON.parse(request.responseText);
 
-        if (!passwordJson[0]) {
+        if (!passwordJson.length) {
           Swal.fire({
             icon: "error",
             title: "Erro!",
-            text: "Um erro ocorreu ao realizar o login",
+            text: "Usuário ou senha incorretos!",
           });
+          return;
         }
 
-        if (password == passwordJson[0].senha)
-          window.location.href = "iniciar.html";
-        else {
+        if (password == passwordJson[0].senha) {
+          createSession(username);
+        } else {
           Swal.fire({
             icon: "error",
             title: "Erro!",
@@ -41,17 +42,42 @@ function login(username, password) {
         Swal.fire({
           icon: "error",
           title: "Erro!",
-          text: "Um erro ocorreu ao realizar o login",
+          text: "Um erro ocorreu ao realizar o login.",
         });
       }
     }
   };
-
-  // o caminho é diferente a depender de onde está a pasta no xampp
-  const url =
+  request.open(
+    "GET",
     "http://localhost/minefield/src/php/consultar.php?comando=" +
-    encodeURIComponent(comando);
-
-  request.open("GET", url, true);
+      encodeURIComponent(comando),
+    true
+  );
   request.send();
+}
+
+function createSession(username) {
+  let request = new XMLHttpRequest();
+
+  request.onreadystatechange = () => {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status == 200) {
+        localStorage.setItem("username", username);
+        window.location.href = "iniciar.php";
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Erro!",
+          text: "Não foi possível iniciar a sessão.",
+        });
+      }
+    }
+  };
+  request.open(
+    "POST",
+    "http://localhost/minefield/src/php/criarSessao.php",
+    true
+  );
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.send("user=" + encodeURIComponent(username));
 }
