@@ -58,13 +58,12 @@
       <div class="campo_lapis">
         <i class="fa-solid fa-circle-user" ><span class="campo_texto"> Username</span></i>
         <input class="form_campo" id="username" type="text" disabled>
-        <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>
 
       <div class="campo_lapis">
         <i class="fa-solid fa-lock" > <span class="campo_texto"> Senha</span></i>
-        <input class="form_campo" id="senha" type="text" disabled>
+        <input class="form_campo" id="senha" type="password" disabled>
         <i class="fa-solid fa-pen-to-square lapis"></i>
         <br>
       </div>

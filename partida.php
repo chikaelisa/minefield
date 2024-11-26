@@ -96,11 +96,6 @@
           <p class="icon-text" id="timer-rivotril"></p>
         </div>
 
-        <div class="iniciar-options" id="playAgain" style="display: none;">
-          <img src="imagens/replay.png" alt="replay">
-          <p class="icon-text" >Jogar Novamente</p>
-        </div>
-
         <div class="iniciar-options" id="configNewGame" style="display: none;">
           <img src="imagens/configNewGame.png" alt="novo jogo">
           <p class="icon-text" >Criar novo jogo</p>

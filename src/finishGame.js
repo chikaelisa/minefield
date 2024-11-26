@@ -12,20 +12,13 @@ const playAgain = () => {
   location.reload();
 };
 
-const setPlayAgainButton = () => {
-  const playAgainDiv = document.getElementById("playAgain");
-  playAgainDiv.style.display = "flex";
-  playAgainDiv.style.cursor = "pointer";
-  playAgainDiv.addEventListener("click", playAgain);
-};
-
 const setConfigNewGameButton = () => {
   const newGameButton = document.getElementById("configNewGame");
   newGameButton.style.display = "flex";
   newGameButton.style.cursor = "pointer";
   newGameButton.addEventListener(
     "click",
-    () => (window.location.href = "iniciar.html")
+    () => (window.location.href = "iniciar.php")
   );
 };
 
@@ -67,7 +60,6 @@ const saveGame = (gameStatus, gameMode, gameDuration) => {
 };
 
 export const isFinishGame = (gameMode, isDefeat, isVictory) => {
-  //TODO: precisa enviar pro banco: user, modo de jogo, num de bom, dimensão e tempo em segundos
   const durationGame =
     gameMode === "RIVOTRIL" ? countSecondsForRivotrilMode : countSeconds;
   const gameDurationText = `O jogo durou ${durationGame()} segundos;`;
@@ -84,14 +76,6 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
       imageHeight: 100, // altura da imagem
       imageAlt: "Ícone do Projeto",
     });
-    /*if (!saveGame('vitória', durationGame()))
-    {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Não foi possível salvar os dados da partida.',
-        });
-    }*/
     setPlayAgainButton();
     setConfigNewGameButton();
     saveGame("VITORIA", gameMode, Number(countSeconds()));
@@ -108,15 +92,6 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
       imageHeight: 100, // altura da imagem
       imageAlt: "Derrota",
     });
-    /*if (!saveGame('derrota', durationGame()))
-    {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Não foi possível salvar os dados da partida.',
-        });
-    }*/
-    setPlayAgainButton();
     setConfigNewGameButton();
     saveGame("DERROTA", gameMode, Number(countSeconds()));
   }
