@@ -20,6 +20,14 @@ function login(username, password) {
       if (request.status == 200) {
         const passwordJson = JSON.parse(request.responseText);
 
+        if (!passwordJson[0]) {
+          Swal.fire({
+            icon: "error",
+            title: "Erro!",
+            text: "Um erro ocorreu ao realizar o login",
+          });
+        }
+
         if (password == passwordJson[0].senha)
           window.location.href = "iniciar.html";
         else {
