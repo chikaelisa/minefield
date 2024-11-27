@@ -13,47 +13,30 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
 function login(username, password) {
   let request = new XMLHttpRequest();
-  let comando = `SELECT senha FROM usuario WHERE username = '${username}';`;
 
-  request.onreadystatechange = () => {
-    if (request.readyState === XMLHttpRequest.DONE) {
-      if (request.status == 200) {
-        const passwordJson = JSON.parse(request.responseText);
+  request.open("POST", "http://localhost/minefield/src/php/login.php", true);
+  let formData = new FormData();
+  formData.append("username", username);
+  formData.append("senha", password);
+  request.send(formData);
 
-        if (!passwordJson.length) {
+  request.onload = () => 
+  {
+    if (request.status == 200) 
+    {
+        const response = JSON.parse(request.responseText);
+        if (response.erro) 
+        {
           Swal.fire({
             icon: "error",
             title: "Erro!",
-            text: "Usuário ou senha incorretos!",
+            text: response.erro
           });
-          return;
         }
-
-        if (password == passwordJson[0].senha) {
+        else
           createSession(username);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Erro!",
-            text: "Usuário ou senha incorretos!",
-          });
-        }
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erro!",
-          text: "Um erro ocorreu ao realizar o login.",
-        });
-      }
     }
-  };
-  request.open(
-    "GET",
-    "http://localhost/minefield/src/php/consultar.php?comando=" +
-      encodeURIComponent(comando),
-    true
-  );
-  request.send();
+  }
 }
 
 function createSession(username) {
