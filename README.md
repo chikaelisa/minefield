@@ -1,7 +1,6 @@
 # minefield
 Jogo Campo Minado desenvolvido como trabalho para a disciplina Programação Web na Universidade Estadual de Campinas (Unicamp)
 
-```
 
 CREATE DATABASE CampoMinado;
 USE CampoMinado; 
@@ -47,4 +46,6 @@ INSERT INTO Partida VALUES (4, 'Enzo', 'NORMAL', 100, 60, 'VITORIA', '2024-12-10
 
 
 
-```
+
+
+// verificar como penviar os dados para autoincremento de id de partida
