@@ -72,9 +72,9 @@ export const isFinishGame = (gameMode, isDefeat, isVictory) => {
       imageHeight: 100, // altura da imagem
       imageAlt: "Ícone do Projeto",
     });
+    saveGame("VITORIA", gameMode, Number(countSeconds()));
     setPlayAgainButton();
     setConfigNewGameButton();
-    saveGame("VITORIA", gameMode, Number(countSeconds()));
   }
   if (isDefeat || (gameMode === "RIVOTRIL" && Number(countSeconds()) === 0)) {
     stopTimer();
