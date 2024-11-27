@@ -139,92 +139,43 @@ function validaUsername(username) {
 }
 
 function cadastraUsuario(usuario) {
+
   let request = new XMLHttpRequest();
 
-  let comando = `INSERT INTO usuario VALUES ('${usuario.user}', '${usuario.cpf}', '${usuario.nome}', '${usuario.dataNascimento}', 
-                                               '${usuario.telefone}', '${usuario.email}', '${usuario.senha}')`;
+  request.open("POST", "http://localhost/minefield/src/php/cadastro.php", true);
+  let formData = new FormData();
+  formData.append("user", usuario.user);
+  formData.append("cpf", usuario.cpf);
+  formData.append("nome", usuario.nome);
+  formData.append("dataNascimento", usuario.dataNascimento);
+  formData.append("telefone", usuario.email);
+  formData.append("senha", usuario.senha);
 
-  request.onreadystatechange = () => {
-    if (request.readyState === XMLHttpRequest.DONE) {
-      if (request.status == 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Sucesso!",
-          text: "Cadastro realizado com sucesso!",
-        }).then(() => {
-          window.location.href = "index.html";
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erro",
-          text: "Não foi possível realizar o cadastro.",
-        });
-      }
+  request.send(formData);
+
+  request.onload = () => 
+  {
+    if (request.status == 200) 
+    {
+        const response = JSON.parse(request.responseText);
+        if (response.erro) 
+        {
+          Swal.fire({
+            icon: "error",
+            title: "Erro!",
+            text: response.erro
+          });
+        }
+        else
+        {
+          Swal.fire({
+            icon: "success",
+            title: "Sucesso!",
+            text: "Cadastro realizado com sucesso!",
+          }).then(() => {
+            window.location.href = "index.html";
+          });
+        }
     }
-  };
-
-  request.open("POST", "http://localhost/minefield/src/php/inserir.php", true);
-  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  request.send("comando=" + encodeURIComponent(comando));
-}
-
-function cadastraUsuario(usuario) {
-  let request = new XMLHttpRequest();
-
-  let comando = `INSERT INTO usuario VALUES ('${usuario.user}', '${usuario.cpf}', '${usuario.nome}', ${usuario.dataNascimento}, 
-                                               '${usuario.telefone}', '${usuario.email}', '${usuario.senha}')`;
-
-  request.onreadystatechange = () => {
-    if (request.readyState === XMLHttpRequest.DONE) {
-      if (request.status == 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Sucesso!",
-          text: "Cadastro realizado com sucesso!",
-        }).then(() => {
-          window.location.href = "index.html";
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erro",
-          text: "Não foi possível realizar o cadastro.",
-        });
-      }
-    }
-  };
-  request.open("POST", "http://localhost/minefield/src/php/inserir.php", false);
-  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  request.send("comando=" + encodeURIComponent(comando));
-}
-
-function cadastraUsuario(usuario) {
-  let request = new XMLHttpRequest();
-
-  let comando = `INSERT INTO usuario VALUES ('${usuario.user}', '${usuario.cpf}', '${usuario.nome}', ${usuario.dataNascimento}, 
-                                               '${usuario.telefone}', '${usuario.email}', '${usuario.senha}')`;
-
-  request.onreadystatechange = () => {
-    if (request.readyState === XMLHttpRequest.DONE) {
-      if (request.status == 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Sucesso!",
-          text: "Cadastro realizado com sucesso!",
-        }).then(() => {
-          window.location.href = "index.html";
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erro",
-          text: "Não foi possível realizar o cadastro.",
-        });
-      }
-    }
-  };
-  request.open("POST", "http://localhost/minefield/src/php/inserir.php", false);
-  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  request.send("comando=" + encodeURIComponent(comando));
+  }
 }

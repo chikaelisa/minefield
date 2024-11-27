@@ -25,8 +25,6 @@ const setConfigNewGameButton = () => {
 const saveGame = (gameStatus, gameMode, gameDuration) => {
   const loggeduser = localStorage.getItem("username");
 
-  console.log(loggeduser);
-
   if (!loggeduser) return false;
 
   let date = new Date();
@@ -40,8 +38,6 @@ const saveGame = (gameStatus, gameMode, gameDuration) => {
                                       numBombas, resultado, tempoPartida, dataPartida)
                               VALUES ('${loggeduser}', '${gameMode}', ${dimension}, ${numberBombs}, 
                                       '${gameStatus}', ${gameDuration}, '${date}')`;
-
-  console.log({ comando });
 
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {

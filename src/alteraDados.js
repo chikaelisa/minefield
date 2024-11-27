@@ -168,7 +168,6 @@ function changeDataLoggedUser(
   request.onreadystatechange = () => {
     if (request.readyState === XMLHttpRequest.DONE) {
       if (request.status == 200) {
-        console.log(request.responseText);
         Swal.fire({
           icon: "success",
           title: "Dados alterados com sucesso!",
