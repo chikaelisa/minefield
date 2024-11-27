@@ -24,7 +24,6 @@ function fetchAll() {
       let convertedResponse = JSON.parse(request.responseText);
 
       let modalidade = "";
-      console.log(convertedResponse);
 
       convertedResponse.forEach((history) => {
         if (history.modalidade.includes("RIVOTRIL")) modalidade = "RIVOTRIL";
@@ -32,8 +31,6 @@ function fetchAll() {
         if (history.modalidade.includes("NORMAL")) modalidade = "NORMAL";
 
         if (history.modalidade.includes("RANQUEADA")) modalidade = "RANQUEADA";
-
-        console.log(formatDate(history.dataPartida));
 
         mockHistory.push({
           playerName: history.jogador_username,
@@ -112,8 +109,6 @@ function filterHistory(/*gameMode*/) {
       match.gameMode
     );
   });
-
-  console.log("2: " + mockHistory.gameMode);
 }
 
 function removeAll(id) {

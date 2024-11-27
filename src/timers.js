@@ -69,7 +69,7 @@ const startTimerRivotril = () => {
 };
 
 export const startTimer = (gameMode, numMines) => {
-  if (gameMode.includes("Rivotril")) {
+  if (gameMode.includes("RIVOTRIL")) {
     startTimerRivotril();
     return;
   }
@@ -86,7 +86,7 @@ export const countSecondsForRivotrilMode = () =>
   inicialSecondsForRivotrilMode - seconds;
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (gameMode === "Rivotril") {
+  if (gameMode === "RIVOTRIL") {
     setTimeToRivotrilMode(numMines);
   }
 });

@@ -42,7 +42,7 @@
       }
         
     }
-  }
+
   catch (PDOException $ex) 
   {
       echo "A conexao falhou: " . $ex->getMessage();

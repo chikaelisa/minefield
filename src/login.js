@@ -16,27 +16,22 @@ function login(username, password) {
 
   request.open("POST", "http://localhost/minefield/src/php/login.php", true);
   let formData = new FormData();
-  formData.append("username", username);
   formData.append("senha", password);
+  formData.append("username", username);
   request.send(formData);
 
-  request.onload = () => 
-  {
-    if (request.status == 200) 
-    {
-        const response = JSON.parse(request.responseText);
-        if (response.erro) 
-        {
-          Swal.fire({
-            icon: "error",
-            title: "Erro!",
-            text: response.erro
-          });
-        }
-        else
-          createSession(username);
+  request.onload = () => {
+    if (request.status == 200) {
+      const response = JSON.parse(request.responseText);
+      if (response.erro) {
+        Swal.fire({
+          icon: "error",
+          title: "Erro!",
+          text: response.erro,
+        });
+      } else createSession(username);
     }
-  }
+  };
 }
 
 function createSession(username) {
